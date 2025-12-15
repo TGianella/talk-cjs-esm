@@ -1,0 +1,21 @@
+{
+  "name": "talk-cjs-esm",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@codesandbox/sandpack-react": "^2.20.0",
+    "@slidev/cli": "^52.6.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "sandpack-vue3": "^3.1.12",
+    "veaury": "^2.6.3",
+    "vue": "^3.5.22"
+  }
+}
