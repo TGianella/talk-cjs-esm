@@ -27,7 +27,10 @@ duration: 50min
   <span class="text-sm font-bold">16/01/2026</span>
 </div>
 
-<div class="absolute left-0 bg-[url(./assets/lego_computer_3-1.png)] w-full h-[33vw] bg-contain bg-no-repeat"></div>
+<div 
+  class="absolute left-0 w-full h-[33vw] bg-contain bg-no-repeat" 
+  style="background-image: url('./assets/lego_computer_3-1.png')"
+></div>
 <div class="absolute font-bold bottom-16px right-30px flex gap-5 items-end">
   <span class="pb-1">9+</span>
   <span class="pb-1">Théo Gianella</span>
