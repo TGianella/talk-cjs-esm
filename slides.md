@@ -771,9 +771,9 @@ module2.foo(); // 'bar'
   <div class="absolute -bottom-8 right-0 text-sm">credit: James M Snell</div>
 </div>
 
-<!-- Résumé de ce qui se passe quand on importe un module en cjs dans node.-->
-
 <!-- TODO SLIDE Est-ce que ça a des influences côté-client ? AMD/require.js: modules asynchrones pour le navigateur. Browserify into Webpack. Naissance du bundling avec phases de build. -->
+
+<!-- Résumé de ce qui se passe quand on importe un module en cjs dans node.-->
 
 ---
 
@@ -785,14 +785,13 @@ module2.foo(); // 'bar'
   <img v-click="3" src="./assets/instructions/5-2.png" width=150 class="absolute top-50 inset-0 m-auto">
 </div>
 
+<!-- TODO: Imports dynamiques en CJS à partir de variables (en parler pour dire que c'est plus possible en ESM ?) -->
 
 <!-- Recap CJS:
 * Un système synchrone (chaque module est chargé quand il est requis) ou tout se fait au runtime (require est une fonction JS qu'on appelle, on ne connaît pas les exports à l'avance) 
 * Un système pensé pour le serveur
 * Implémentation par des runtimes, pas une feature de JS (wrapper les modules)
 -->
-
-<!-- TODO: Imports dynamiques en CJS à partir de variables (en parler pour dire que c'est plus possible en ESM ?) -->
 
 ---
 
@@ -1274,11 +1273,9 @@ import { anotherThing } from "otherModule.js"
 </div>
 
 
-
+<!-- TODO Rajouter une partie sur la résolution -->
 
 <!-- Construction de l'arbre des modules. Comment on passe d'un point d'entrée à un arbre de module records. Parler des différences avec CJS, asynchrone parce que on fait toute la construction d'un coup, on évalue pas chaque module puis on fait l'import à la volée, on va d'abord résoudre tous les imports: avant l'exécution du moindre module, le moteur connaît tout l'arbre de dépendances. C'est asynchrone donc le main thread n'est pas bloqué: on peut fetch les modules découverts en parallèle et la page répond toujours. Première phase: résolution, le moteur trouve une déclaration d'import, il délègue la résolution au loader qui va fetcher dans la foulée (en http ou dans le filesystem) le moteur reçoit le code source (non évalué) et va le parser (pas l'exécuter) pour créer un module record. C'est une représentation du module qui contient le code mais aussi les imports/exports. Les modules sont placés dans une import map (un cache) -->
-
-<!-- TODO Rajouter une partie sur la résolution -->
 
 ---
 layout: two-cols-header
@@ -1629,9 +1626,7 @@ module.exports = "bar";
 
 # {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Conclusion
 
-
-<!-- Deux solutions fondamentalement différentes (pas la même nature) au même problème. Persistance des CJS même si la norme sont les ESM car c'est encore central dans node, et le code legacy a été fait pour le CJS donc les migrations sont difficiles. Utiliser l'ESM, connaître les différences entre les deux pour pouvoir fonctionner avec l'ESM. La plupart des apps web sont bundlées donc en fait l'impact est plus sur la devx que sur le runtime vraiment. -->
-
 <!-- TODO Mention des nodisms pour le CJS (bare imports, pas d'extension)-->
 
+<!-- Deux solutions fondamentalement différentes (pas la même nature) au même problème. Persistance des CJS même si la norme sont les ESM car c'est encore central dans node, et le code legacy a été fait pour le CJS donc les migrations sont difficiles. Utiliser l'ESM, connaître les différences entre les deux pour pouvoir fonctionner avec l'ESM. La plupart des apps web sont bundlées donc en fait l'impact est plus sur la devx que sur le runtime vraiment. -->
 
