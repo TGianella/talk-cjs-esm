@@ -761,12 +761,885 @@ module2.foo(); // 'bar'
 
 <!-- Ajouter une slide sur le cache, sur le fait que chaque module est instancié une seule fois, et que du coup un module peut en modifier un autre et la modification est active pour tous les autres consommateurs. -->
 
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; En résumé
+
+<div class="absolute inset-0 m-auto w-3/4 h-fit pb-5 pt-10 border border-black rounded-md flex items-center justify-evenly z-1">
+  <div class="absolute m-auto top-0">require()</div>
+  <div class="absolute -z-1 flex items-center">
+    <div class="w-200 h-10 bg-gray-500"></div>
+    <div class="w-0 h-0 border-t-30 border-t-transparent border-l-30 border-l-gray-500 border-b-30 border-b-transparent"></div>
+  </div>
+  <div class="size-30 border border-black rounded-md p-3 grid place-items-center bg-#d3ecfd">Resolution</div>
+  <div class="size-30 border border-black rounded-md p-3 grid place-items-center bg-#d3ecfd">Loading</div>
+  <div class="size-30 border border-black rounded-md p-3 grid place-items-center bg-#d3ecfd">Wrapping</div>
+  <div class="size-30 border border-black rounded-md p-3 grid place-items-center bg-#d3ecfd">Evaluation</div>
+  <div class="size-30 border border-black rounded-md p-3 grid place-items-center bg-#d3ecfd">Caching</div>
+  <div class="absolute -bottom-8 right-0 text-sm">credit: James M Snell</div>
+</div>
+
+<!-- Résumé de ce qui se passe quand on importe un module en cjs dans node.-->
+
+<!-- TODO SLIDE Est-ce que ça a des influences côté-client ? AMD/require.js: modules asynchrones pour le navigateur. Browserify into Webpack. Naissance du bundling avec phases de build. -->
+
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; En résumé
+
+<div class="h-full relative">
+  <img v-click="1" src="./assets/instructions/16-1.png" width=200 class="absolute right-100 bottom-50 inset-0 m-auto">
+  <img v-click="2" src="./assets/instructions/server.png" width=120 class="absolute left-100 bottom-50 inset-0 m-auto">
+  <img v-click="3" src="./assets/instructions/5-2.png" width=150 class="absolute top-50 inset-0 m-auto">
+</div>
+
+
 <!-- Recap CJS:
-* Un système synchrone (chaque module est chargé quand il est requis)
-* Tout se fait au runtime (require est une fonction JS qu'on appelle, on ne connaît pas les exports à l'avance) 
+* Un système synchrone (chaque module est chargé quand il est requis) ou tout se fait au runtime (require est une fonction JS qu'on appelle, on ne connaît pas les exports à l'avance) 
 * Un système pensé pour le serveur
 * Implémentation par des runtimes, pas une feature de JS (wrapper les modules)
 -->
 
-<!-- Est-ce que ça a des influences côté-client ? -->
+<!-- Imports dynamiques en CJS à partir de variables (en parler pour dire que c'est plus possible en ESM ?) -->
+
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Le trou noir ECMAScript des années 2000
+
+<div class="h-full">
+  <img v-click="[1, 2]" src="./assets/instructions/17-1.png" class="absolute inset-0 m-auto" width=200>
+  <img v-click="[2, 3]" src="./assets/instructions/17-2.png" class="absolute inset-0 m-auto" width=220>
+  <img v-click="[3, 4]" src="./assets/instructions/17-3.png" class="absolute inset-0 m-auto" width=240>
+  <img v-click="[4, 5]" src="./assets/instructions/17-4.png" class="absolute inset-0 m-auto" width=300>
+  <img v-click="[5, 6]" src="./assets/instructions/17-5.png" class="absolute inset-0 m-auto" width=350>
+  <img v-click="6" src="./assets/instructions/17-1.png" class="absolute inset-0 m-auto" width=200>
+</div>
+
+<!-- Transi ESM: reprendre l'histoire à partir du fait que c'est pas dans la spec. JS est un petit langage de script, standarisé en ECMAScript. PB: dans les années 2000, aucune évolution du langage ou presque (projet de ES4 avec des packages (modules) beaucoup trop ambitieux bloqué par Microsoft). Aucune sortie majeure avant ES6 en 2015. Les modules sont dans ES6, moins ambitieux que les packages. -->
+
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Le standard ESM
+
+<div v-click="[1, 2]" class="absolute inset-0 w-full flex justify-evenly items-center">
+  <img class="max-h-xs" src="./assets/instructions/laptop.png">
+  <img class="max-h-xs" src="./assets/instructions/server.png">
+</div>
+
+<img v-click="[2, 3]" class="absolute inset-0 m-auto max-h-70" src="./assets/instructions/18-2.png">
+
+<div v-click="[3, 5]" class="absolute inset-0 w-full flex justify-evenly items-center">
+  <div class="p-10">
+    <img v-click="[3, 5]" class="max-h-60" src="./assets/instructions/18-3.png">
+  </div>
+  <div class="p-10">
+    <img v-click="[4, 5]" class="max-h-60" src="./assets/instructions/18-4.png">
+  </div>
+</div>
+
+<div v-click="[5, 6]" class="absolute inset-0 w-full flex justify-evenly items-center">
+  <div class="p-10 bg-green-100 outline outline-1 outline-black rounded-lg">
+    <img class="max-h-60" src="./assets/instructions/18-3.png">
+  </div>
+  <div class="p-10">
+    <img class="max-h-60" src="./assets/instructions/18-4.png">
+  </div>
+</div>
+
+<div v-click="[6, 10]" class="absolute inset-0 w-full flex justify-evenly items-center">
+  <div class="p-10 bg-green-100 outline outline-1 outline-black rounded-lg relative">
+    <img v-click="7" class="max-h-10 absolute top-2 right-2" src="./assets/JS_logo.png">
+    <img class="max-h-60" src="./assets/instructions/18-3.png">
+  </div>
+  <div class="p-10 bg-red-100 outline outline-1 outline-black rounded-lg relative">
+    <img v-click="8" class="max-h-10 absolute top-2 right-2" src="./assets/HTML_logo.webp">
+    <img v-click="9" class="max-h-10 absolute top-2 right-12" src="./assets/node_logo.svg">
+    <img class="max-h-60" src="./assets/instructions/18-4.png">
+  </div>
+</div>
+
+<div v-click="10" class="absolute inset-0 w-full flex justify-evenly items-center">
+  <div class="p-10 bg-green-100 outline outline-1 outline-black rounded-lg relative">
+    <img class="max-h-10 absolute top-2 right-2" src="./assets/JS_logo.png">
+    <img class="max-h-60" src="./assets/instructions/18-3.png">
+  </div>
+  <div class="w-content"><code v-click="11" class="text-white">HostLoadImportedModule</code></div>
+  <div class="p-10 bg-red-100 outline outline-1 outline-black rounded-lg relative">
+    <img class="max-h-10 absolute top-2 right-2" src="./assets/HTML_logo.webp">
+    <img class="max-h-10 absolute top-2 right-12" src="./assets/node_logo.svg">
+    <img class="max-h-60" src="./assets/instructions/18-4.png">
+  </div>
+</div>
+
+<!-- Histoire de la conception de ES6 -> des gens qui ont participé à CJS proposent des modules au TC39, ils collaborent. Problème: il faut faire une spec de modules universelle, et maintenant le server-side existe, ça ne peut pas être que une spec pour le navigateur, il faut accomoder les différents environnements d'exécution. Donc la spec se sépare en 2, une spec des ES modules pour JS (sémantique, construction des modules, lien, exécution: comment les modules fonctionnent) et le loader (résolution de module, fetching: d'où viennent les modules et comment les récupérer). Problème: la spec du loader est très difficile à écrire et devient le bottleneck pour la spec de modules qui existe -> Décision prise en 2014 de déléguer l'implémentation des modules à l'environnement, la spec ESM définit des opérations qui doivent être implémentées par l'environnement (résolution, loading). -->
+
+---
+layout: two-cols-header
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Une nouvelle interface
+
+::left::
+
+<div class="h-full relative">
+<div class="h-full relative">
+<div v-click="[1, 2]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+```
+    
+</div>
+<div v-click="[2, 3]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+
+import * as name from "module-name";
+```
+    
+</div>
+<div v-click="[3, 4]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+
+import * as name from "module-name";
+
+import { export1 } from "module-name";
+```
+    
+</div>
+<div v-click="[4, 5]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+
+import * as name from "module-name";
+
+import { export1 } from "module-name";
+
+import { export1 as alias1 } from "module-name";
+```
+    
+</div>
+<div v-click="[5, 6]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+
+import * as name from "module-name";
+
+import { export1 } from "module-name";
+
+import { export1 as alias1 } from "module-name";
+```
+    
+</div>
+<div v-click="[6, 7]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+
+import * as name from "module-name";
+
+import { export1 } from "module-name";
+
+import { export1 as alias1 } from "module-name";
+
+import { default as alias } from "module-name";
+```
+    
+</div>
+<div v-click="[7, 8]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+
+import * as name from "module-name";
+
+import { export1 } from "module-name";
+
+import { export1 as alias1 } from "module-name";
+
+import { default as alias } from "module-name";
+
+import { export1, export2 } from "module-name";
+```
+    
+</div>
+<div v-click="[8, 9]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+
+import * as name from "module-name";
+
+import { export1 } from "module-name";
+
+import { export1 as alias1 } from "module-name";
+
+import { default as alias } from "module-name";
+
+import { export1, export2 } from "module-name";
+
+import { "string name" as alias } from "module-name";
+```
+    
+</div>
+<div v-click="[9, 10]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+
+import * as name from "module-name";
+
+import { export1 } from "module-name";
+
+import { export1 as alias1 } from "module-name";
+
+import { default as alias } from "module-name";
+
+import { export1, export2 } from "module-name";
+
+import { "string name" as alias } from "module-name";
+
+import defaultExport, { export1 } from "module-name";
+```
+    
+</div>
+<div v-click="[10, 11]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+
+import * as name from "module-name";
+
+import { export1 } from "module-name";
+
+import { export1 as alias1 } from "module-name";
+
+import { default as alias } from "module-name";
+
+import { export1, export2 } from "module-name";
+
+import { "string name" as alias } from "module-name";
+
+import defaultExport, { export1 } from "module-name";
+
+import defaultExport, * as name from "module-name";
+```
+    
+</div>
+<div v-click="11" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+import defaultExport from "module-name";
+
+import * as name from "module-name";
+
+import { export1 } from "module-name";
+
+import { export1 as alias1 } from "module-name";
+
+import { default as alias } from "module-name";
+
+import { export1, export2 } from "module-name";
+
+import { "string name" as alias } from "module-name";
+
+import defaultExport, { export1 } from "module-name";
+
+import defaultExport, * as name from "module-name";
+
+import "module-name";
+```
+    
+</div>
+</div>
+</div>
+
+::right::
+
+<div class="h-full relative">
+<div class="h-full relative">
+<div v-click="[12, 13]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+export const name1 = 1, name2 = 2/*, … */;
+```
+    
+</div>
+<div v-click="[13, 14]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+export const name1 = 1, name2 = 2/*, … */;
+
+export { name1, /* …, */ nameN };
+```
+    
+</div>
+<div v-click="[14, 15]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+export const name1 = 1, name2 = 2/*, … */;
+
+export { name1, /* …, */ nameN };
+
+export { variable1 as name1, variable2 as name2 };
+```
+    
+</div>
+<div v-click="[15, 16]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+export const name1 = 1, name2 = 2/*, … */;
+
+export { name1, /* …, */ nameN };
+
+export { variable1 as name1, variable2 as name2 };
+
+export { variable1 as "string name" };
+```
+    
+</div>
+<div v-click="[16, 17]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+export const name1 = 1, name2 = 2/*, … */;
+
+export { name1, /* …, */ nameN };
+
+export { variable1 as name1, variable2 as name2 };
+
+export { variable1 as "string name" };
+
+export { name1 as default /*, … */ };
+```
+    
+</div>
+<div v-click="[17, 18]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+export const name1 = 1, name2 = 2/*, … */;
+
+export { name1, /* …, */ nameN };
+
+export { variable1 as name1, variable2 as name2 };
+
+export { variable1 as "string name" };
+
+export { name1 as default /*, … */ };
+
+export default expression;
+```
+    
+</div>
+<div v-click="[18, 19]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+export const name1 = 1, name2 = 2/*, … */;
+
+export { name1, /* …, */ nameN };
+
+export { variable1 as name1, variable2 as name2 };
+
+export { variable1 as "string name" };
+
+export { name1 as default /*, … */ };
+
+export default expression;
+
+export default function functionName() { /* … */ }
+```
+    
+</div>
+<div v-click="19" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+export const name1 = 1, name2 = 2/*, … */;
+
+export { name1, /* …, */ nameN };
+
+export { variable1 as name1, variable2 as name2 };
+
+export { variable1 as "string name" };
+
+export { name1 as default /*, … */ };
+
+export default expression;
+
+export default function functionName() { /* … */ }
+
+export * from "module-name";
+```
+    
+</div>
+</div>
+</div>
+
+<!-- Présentation de l'interface, statement et fonction import. Insister sur le statement, toujours top level, analysable de manière statique. Pas du tout utilisé lors de l'exécution d'un fichier mais uniquement lors d'une phase de construction des modules.
+* Imports:
+Default (une seule valeur, équivalent module.exports)
+Namespace (équivalent exports.foo)
+Named (possibilité de rename)
+Rename le default (pareil que de direct renommer le défault): intéressant, ça veut dire que l'export default n'a rien de spécial, il a juste le nom défault
+Plusieurs exports named (ressemble à de la destructuration mais pas vraiment)
+Imports strings (obligé de rennomer)
+Identifiants arbitraires (parce que WASM génère des exports en unicode qui ne sont pas forcément des identifiants (espaces, tirets, etc.))
+Combinaison de default + named
+Combinaison de default + namespace (namespace + named impossible)
+Import de side-effect (juste faire tourner le top-level code)
+
+* Exports:
+Nommés (déclaration de variable, constante, fonction, classe)
+Nommés de valeurs déjà déclarées
+Renommage possible
+Identifiants arbitraires (toutes valeurs possibles)
+Exporter une valeur comme défaut (juste un nom)
+Export par défaut (n'importe quelle expression ou déclaration de fonction/classe (mais pas de statement))
+Re-export (namespace, named, default)
+
+ -->
+
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Comment charger un module ?
+
+<div v-click="2" class="flex bg-[#ffffde] border border-black rounded-lg w-fit h-sm overflow-clip m-auto mt-10 items-center p-5">
+  <div v-click="2" class="max-h-80 p-8 py-10 pt-12 relative">
+    <span class="absolute top-0 left-8 text-3xl">1</span>
+    <img class="max-h-60" src="./assets/instructions/19-1.png" />
+  </div>
+  <div v-click="3" class="max-h-80 p-10 px-15 border-l border-black relative">
+    <span class="absolute top-0 left-8 text-3xl">2</span>
+    <img class="max-h-60" src="./assets/instructions/19-2.png" />
+  </div>
+  <div v-click="4" class="max-h-80 px-10 border-l border-black relative">
+    <span class="absolute top-0 left-8 text-3xl">3</span>
+    <img class="max-h-80" src="./assets/instructions/19-3.png" />
+  </div>
+</div>
+
+<!-- Présentation des 3 phases asynchrones: construction: trouver les modules, les télécharger et les parser en module records, équivalent de récupérer toutes les pièces nécessaires pour un lego, instantiation: réserver de l'espace mémoire pour les imports/exports (linking) équivalent d'assembler les pièces mais on ne les fait pas encore fonctionner, evaluation: exécution du code pour remplir l'espace mémoire avec des valeurs, fonctionnement de l'objet. Asynchrone pour le navigateur -->
+
+---
+layout: two-cols-header
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Construction
+
+::left::
+
+<div class="h-full relative">
+  <img v-click="[1, 3]" src="./assets/instructions/19-2.png" width=100 class="absolute inset-0 m-auto"  />
+  <img v-click="[3, 6]" src="./assets/instructions/20-1.png" width=30 class="absolute inset-0 m-auto -translate-x-30"  />
+  <img v-click="[4, 6]" src="./assets/instructions/20-2.png" width=70 class="absolute inset-0 m-auto"  />
+  <img v-click="[5, 6]" src="./assets/instructions/20-3.png" width=70 class="absolute inset-0 m-auto translate-x-30"  />
+  <img v-click="6" src="./assets/instructions/19-1.png" width=300 class="absolute inset-0 m-auto"  />
+</div>
+
+::right::
+
+<div class="h-full relative">
+<div v-click="[2, 3]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+
+```html
+<script src="main.js" type="module">
+```
+
+</div>
+<div v-click="[3, 4]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+
+```js
+// main.js
+import { something } from "module.js"
+
+...
+```
+
+</div>
+<div v-click="[4, 5]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+
+```js
+// module.js
+import { somethingElse } from "anotherModule.js"
+
+...
+```
+
+</div>
+<div v-click="5" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+
+```js
+// anotherModule.js
+import { anotherThing } from "otherModule.js"
+
+...
+```
+
+</div>
+</div>
+
+
+
+
+<!-- Construction de l'arbre des modules. Comment on passe d'un point d'entrée à un arbre de module records. Parler des différences avec CJS, asynchrone parce que on fait toute la construction d'un coup, on évalue pas chaque module puis on fait l'import à la volée, on va d'abord résoudre tous les imports: avant l'exécution du moindre module, le moteur connaît tout l'arbre de dépendances. C'est asynchrone donc le main thread n'est pas bloqué: on peut fetch les modules découverts en parallèle et la page répond toujours. Première phase: résolution, le moteur trouve une déclaration d'import, il délègue la résolution au loader qui va fetcher dans la foulée (en http ou dans le filesystem) le moteur reçoit le code source (non évalué) et va le parser (pas l'exécuter) pour créer un module record. C'est une représentation du module qui contient le code mais aussi les imports/exports. Les modules sont placés dans une import map (un cache) -->
+
+<!-- Rajouter une partie sur la résolution -->
+
+---
+layout: two-cols-header
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Instanciation
+
+::left::
+
+<div class="h-full relative">
+  <img v-click="[1, 2]" src="./assets/instructions/21-1.png" width=190 class="absolute inset-0 m-auto"  />
+  <img v-click="[2, 3]" src="./assets/instructions/21-2.png" width=190 class="absolute inset-0 m-auto"  />
+  <img v-click="[3, 4]" src="./assets/instructions/21-3.png" width=190 class="absolute inset-0 m-auto"  />
+  <img v-click="[4, 6]" src="./assets/instructions/21-4.png" width=190 class="absolute inset-0 m-auto"  />
+  <img v-click="6" src="./assets/instructions/21-5.png" width=190 class="absolute inset-0 m-auto"  />
+</div>
+
+::right::
+
+<div class="h-full relative">
+<div v-click="[1, 2]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+
+```js
+// module.js
+
+// no imports !
+
+... // no code is evaluated yet
+
+export const foo = "foo";
+```
+
+</div>
+<div v-click="[2, 3]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+
+```js
+// parent.js
+import { foo } from "./module.js"
+
+...
+
+export const bar = "bar";
+```
+
+</div>
+<div v-click="[3, 4]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+
+```js
+// grandParent.js
+import { bar } from "./parent.js"
+
+...
+
+export const baz = "baz";
+```
+
+</div>
+<div v-click="[4, 5]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+
+```js
+// module.js
+export let count = 0;
+export function increment() { count++ }
+```
+
+</div>
+<div v-click="[5, 6]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+
+```js
+// module.js
+export let count = 0;
+export function increment() { count++ }
+```
+
+```js
+// main.js
+import { count, increment } from './module.js';
+
+console.log(count); // 0
+increment();
+console.log(count); // 1
+```
+
+</div>
+<div v-click="6" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+
+```js
+// a.js
+import { value } from './b.js';
+export const value = 'a';
+export const getValue = () => value;
+```
+<div v-click="7">
+```js
+// b.js
+import { value } from './a.js';
+export const value = 'b';
+export const getValue = () => value;
+```
+</div>
+
+<div v-click="8">
+```js
+// main.js
+import { getValue as getA } from './a.js';
+import { getValue as getB } from './b.js';
+console.log(getA()); // 'b'
+console.log(getB()); // 'a'
+```
+</div>
+
+</div>
+</div>
+
+<!-- Phase de linking: réserver des espaces mémoire pour les objets qui sont importés/exportés, les espaces mémoires ne sont pas remplis à ce moment-là (il faudrait exécuter le code). Live bindings: l'import et l'export pointent sur le même espace mémoire, on ne peut pas réassigner un import. Ca permet de gérer les dépendances cycliques et de créer un arbre sans exécuter aucun code (en cjs puisqu'on copie les valeurs il faut bien connaître les valeurs). Les modules sont instanciés par le moteur.-->
+
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Evaluation
+
+<img class="absolute inset-0 m-auto max-h-100" src="./assets/instructions/19-3.png" />
+
+<!-- Phase d'évaluation, le code est évalué dans l'ordre inverse (on part des feuilles de l'arbre, les modules qui n'ont pas de dépendance) et on exécute le code de top-niveau. On remplit les espaces mémoire avec les valeurs.-->
+
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Pourquoi c'est mieux ?
+
+<div class="h-full relative">
+  <img v-click="1" src="./assets/instructions/23-1.png" width=80 class="absolute right-100 bottom-50 inset-0 m-auto">
+  <img v-click="2" src="./assets/instructions/laptop.png" width=170 class="absolute left-70 bottom-50 inset-0 m-auto">
+  <img v-click="3" src="./assets/instructions/5-2.png" width=150 class="absolute right-150 top-50 inset-0 m-auto">
+  <img v-click="4" src="./assets/instructions/21-5.png" width=150 class="absolute top-50 inset-0 m-auto">
+  <img v-click="5" src="./assets/instructions/23-5.png" width=80 class="absolute left-150 top-50 inset-0 m-auto">
+</div>
+
+<!-- 
+Dans le langage directement
+Supporté par les navigateurs
+Asynchrone
+Meilleur support des dépendances circulaires
+Static: analysable, tree-shakeable
+-->
+
+---
+layout: two-cols-header
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Parse goals
+
+::left::
+
+<div class="h-full relative">
+<div v-click="[1, 3]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```html
+<script>
+  undefinedVariable = "foo" // no error
+</script>
+```
+
+</div>
+<div v-click="[3, 5]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```html
+<script>
+  undefinedVariable = "foo" // no error
+
+  var global = "global"
+  console.log(window.global) // "global"
+</script>
+```
+
+</div>
+<div v-click="[5, 7]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```html
+<script>
+  undefinedVariable = "foo" // no error
+
+  var global = "global"
+  console.log(window.global) // "global"
+
+  const data = await fetch('...'); // error
+</script>
+```
+
+</div>
+<img  v-click="7" class="absolute inset-0 m-auto" src="./assets/instructions/5-2.png" width=200 />
+</div>
+
+::right::
+
+<div class="h-full relative">
+<div v-click="[2, 4]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```html
+<script type="module">
+  undefinedVariable = "foo" // error
+</script>
+```
+
+</div>
+<div v-click="[4, 6]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```html
+<script type="module">
+  undefinedVariable = "foo" // error
+
+  var global = "global"
+  console.log(window.global) // undefined
+</script>
+```
+
+</div>
+<div v-click="[6, 7]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```html
+<script type="module">
+  undefinedVariable = "foo" // error
+
+  var global = "global"
+  console.log(window.global) // undefined
+
+  const data = await fetch('...'); // 👌
+</script>
+```
+
+</div>
+<span v-click="[7, 8]" class="text-9xl absolute inset-0 m-auto w-fit h-fit">?</span>
+<div v-click="8" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+<div v-click="8" class="w-18/20">
+
+```js
+// module.mjs
+```
+
+</div>
+<div v-click="9" class="w-18/20">
+
+```json
+// package.json
+{
+  type: "module"
+}
+```
+
+</div>
+<div v-click="10" class="w-18/20">
+
+```js
+// module.js
+import something from "otherModule.js"
+```
+
+</div>
+
+</div>
+</div>
+
+<!-- Module comme parse goal: use strict, await. Parler de type module comme quelque chose de fondamentalement différent d'un script. Ca marche pour le navigateur mais pas pour node, d'où le mjs. Parler de comment Node comprend qu'un fichier est un module.-->
+
+---
+layout: two-cols-header
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Interopérabilité
+
+::left::
+
+<div class="h-full relative">
+<div v-click="1" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+// module.mjs
+import foo from "module.cjs"
+```
+
+</div>
+</div>
+
+::right::
+
+<div class="h-full relative">
+<div v-click="[2, 3]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+// module.cjs
+const foo = require('module.mjs');
+```
+
+</div>
+<div v-click="[3, 4]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+// module.cjs
+const foo = require('module.mjs');
+```
+
+```js
+// module.mjs
+export default "foo";
+```
+
+</div>
+<div v-click="[4, 5]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+// module.cjs
+const foo = require('module.mjs');
+
+console.log(foo); // { default: "foo" }
+```
+
+```js
+// module.mjs
+export default "foo";
+```
+
+</div>
+<div v-click="5" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+// module.cjs
+const foo = require('module.mjs');
+const bar = require('module.cjs');
+
+console.log(foo); // { default: "foo" }
+console.log(bar); // "bar"
+```
+
+```js
+// module.mjs
+export default "foo";
+```
+
+```js
+// module.cjs
+module.exports = "bar";
+```
+
+</div>
+</div>
+
+<!-- Interop en node: Possibilité d'importer des modules commonJS en ESM (comme un import dynamique, ça sera résolu au runtime, mais ça marche (pas très grave parce qu'on est côté serveur). Aussi depuis node 22, possibilité de require de l'ESM, mais avec une limitation: le module ESM doit être synchrone (pas de top-level await) parce que require est synchrone. ). Attention pour les imports defaults la transition n'est pas transparente, module.exports n'est pas strictement équivalent à export default parce que l'un renvoie directement l'export alors que l'autre le renvoie comme la clé default du module. -->
+
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Conclusion
+
+
+<!-- Deux solutions fondamentalement différentes (pas la même nature) au même problème. Persistance des CJS même si la norme sont les ESM car c'est encore central dans node, et le code legacy a été fait pour le CJS donc les migrations sont difficiles. Utiliser l'ESM, connaître les différences entre les deux pour pouvoir fonctionner avec l'ESM. La plupart des apps web sont bundlées donc en fait l'impact est plus sur la devx que sur le runtime vraiment. -->
+
+<!-- Mention des nodisms pour le CJS (bare imports, pas d'extension)-->
+
 
