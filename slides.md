@@ -34,10 +34,6 @@ duration: 50min
   <img src="./assets/logo_lyon_js.png" width=50/>
 </div>
 
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
-
 ---
 
 # {{ $page - 1 }} &nbsp;&nbsp;&nbsp;Faire une page web <v-click> en 2004 </v-click>
@@ -100,7 +96,7 @@ layout: two-cols-header
 
 # {{ $page - 1 }} &nbsp;&nbsp;&nbsp;Scripts et modularité
 
-<!-- Amélioration possible: faire une fiche avec des étapes 1/2 pour illustrer l'ordre de chargement de main.js et utils.js -->
+<!-- TODO: faire une fiche avec des étapes 1/2 pour illustrer l'ordre de chargement de main.js et utils.js -->
 
 ::left::
 <div class="h-full relative">
@@ -158,7 +154,7 @@ function formatDate(date) {
 </div>
 </div>
 
-<!-- Parler de ce qui se passe quand on combine des scripts: objet window global (dépendances implicites) et ordre de chargement qui compte, side effects et surtout collision car pas de namespace (t'es jamais sûr de pas écraser une variable définie ailleurs). En fait c'est comme tout concaténer dans un seul script -->
+<!-- Quand on combine des scripts: objet window global (dépendances implicites) et ordre de chargement qui compte, side effects et surtout collision car pas de namespace (t'es jamais sûr de pas écraser une variable définie ailleurs). En fait c'est comme tout concaténer dans un seul script -->
 
 ---
 layout: two-cols-header
@@ -251,8 +247,6 @@ transition: fade
   <img v-click src="./assets/instructions/5-3.png" width=200>
 </div>
 
-
-
 <!-- Fin des années 2000: moment d'effervescence autour de JavaScript. On a parlé des aspects techniques, mais ce n'est pas tout. Au même moment, va se mettre en place un vrai écosystème JavaScript serveur. Kevin Dangoor un développeur de Mozilla publie un post sur son blog qui va avoir un grand retentissement: il dit dedans que le JS côté serveur n'a pas tant besoin de solutions techniques (il y a en a plein qui existent déjà), mais d'un écosystème: une lib standard, des interfaces standard,  un certain nombre de conventions, un moyen unique et simple de publier et d'installer des dépendances en cross-platform, et... une méthode standard pour inclure des modules et les scoper proprement.-->
 
 ---
@@ -268,8 +262,6 @@ layout: two-cols-header
 ---
 
 # {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Les modules CommonJS
-
-<!-- Idée: parler des propositions de spec alternatives aux secured modules -->
 
 ::left::
 
@@ -495,7 +487,7 @@ console.log(a.bar) // undefined
 
 Plusieurs conséquences: 
 * Les dépendances circulaires fonctionnent
-* Attention à l'ordre de chargement des modules, il faut faire gaffe
+* Attention à l'ordre de chargement des modules qui change le résultat à l'exécution
 * Il y a donc un cache de modules: chaque module est chargé une seule fois (au total, ça peut se faire en plusieurs fois si on est interrompu par un require). -->
 
 
@@ -759,7 +751,7 @@ module2.foo(); // 'bar'
 </div>
 </div>
 
-<!-- Ajouter une slide sur le cache, sur le fait que chaque module est instancié une seule fois, et que du coup un module peut en modifier un autre et la modification est active pour tous les autres consommateurs. -->
+<!-- Comme chaque module est instancié une seule fois, du coup un module peut en modifier un autre et la modification est active pour tous les autres consommateurs. -->
 
 ---
 
@@ -800,7 +792,7 @@ module2.foo(); // 'bar'
 * Implémentation par des runtimes, pas une feature de JS (wrapper les modules)
 -->
 
-<!-- Imports dynamiques en CJS à partir de variables (en parler pour dire que c'est plus possible en ESM ?) -->
+<!-- TODO: Imports dynamiques en CJS à partir de variables (en parler pour dire que c'est plus possible en ESM ?) -->
 
 ---
 
@@ -815,7 +807,7 @@ module2.foo(); // 'bar'
   <img v-click="6" src="./assets/instructions/17-1.png" class="absolute inset-0 m-auto" width=200>
 </div>
 
-<!-- Transi ESM: reprendre l'histoire à partir du fait que c'est pas dans la spec. JS est un petit langage de script, standarisé en ECMAScript. PB: dans les années 2000, aucune évolution du langage ou presque (projet de ES4 avec des packages (modules) beaucoup trop ambitieux bloqué par Microsoft). Aucune sortie majeure avant ES6 en 2015. Les modules sont dans ES6, moins ambitieux que les packages. -->
+<!-- Pourquoi les modules sont pas dans la spec ? A la base JS est un petit langage de script, standarisé en ECMAScript. PB: dans les années 2000, aucune évolution du langage ou presque (projet de ES4 avec des packages (modules) beaucoup trop ambitieux bloqué par Microsoft). Aucune sortie majeure avant ES6 en 2015. Les modules sont dans ES6, moins ambitieux que les packages. -->
 
 ---
 
@@ -1286,7 +1278,7 @@ import { anotherThing } from "otherModule.js"
 
 <!-- Construction de l'arbre des modules. Comment on passe d'un point d'entrée à un arbre de module records. Parler des différences avec CJS, asynchrone parce que on fait toute la construction d'un coup, on évalue pas chaque module puis on fait l'import à la volée, on va d'abord résoudre tous les imports: avant l'exécution du moindre module, le moteur connaît tout l'arbre de dépendances. C'est asynchrone donc le main thread n'est pas bloqué: on peut fetch les modules découverts en parallèle et la page répond toujours. Première phase: résolution, le moteur trouve une déclaration d'import, il délègue la résolution au loader qui va fetcher dans la foulée (en http ou dans le filesystem) le moteur reçoit le code source (non évalué) et va le parser (pas l'exécuter) pour créer un module record. C'est une représentation du module qui contient le code mais aussi les imports/exports. Les modules sont placés dans une import map (un cache) -->
 
-<!-- Rajouter une partie sur la résolution -->
+<!-- TODO Rajouter une partie sur la résolution -->
 
 ---
 layout: two-cols-header
@@ -1640,6 +1632,6 @@ module.exports = "bar";
 
 <!-- Deux solutions fondamentalement différentes (pas la même nature) au même problème. Persistance des CJS même si la norme sont les ESM car c'est encore central dans node, et le code legacy a été fait pour le CJS donc les migrations sont difficiles. Utiliser l'ESM, connaître les différences entre les deux pour pouvoir fonctionner avec l'ESM. La plupart des apps web sont bundlées donc en fait l'impact est plus sur la devx que sur le runtime vraiment. -->
 
-<!-- Mention des nodisms pour le CJS (bare imports, pas d'extension)-->
+<!-- TODO Mention des nodisms pour le CJS (bare imports, pas d'extension)-->
 
 
