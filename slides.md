@@ -24,7 +24,7 @@ duration: 50min
 
 <div class="absolute top-30px left-30px flex flex-col gap-1">
   <img src='./assets/JS_lego.png' width="85" />
-  <span class="text-sm font-bold">16/01/2026</span>
+  <span class="text-sm font-bold">13/01/2026</span>
 </div>
 
 <div class="absolute left-0 bg-[url(/lego_computer_3-1.png)] w-full h-[33vw] bg-contain bg-no-repeat"></div>
@@ -34,9 +34,17 @@ duration: 50min
   <img src="./assets/logo_lyon_js.png" width=50/>
 </div>
 
+<!-- Introduction: en étant arrivé dans la tech dans les années 2020, quand je me suis formé à JavaScript, j'ai principalement travaillé avec de l'ESM. Dans un coin de ma tête, et dans des vielles docs j'ai vu qu'il existait un autre format de modules, le common JS. Dans mon environnement actuel de travail (un projet de plus de 10 ans) je dois cohabiter avec les deux. Je connais les basiques des deux systèmes, quelle est leur syntaxe, etc. mais très souvent dès qu'il faut aller plus loin, ça peut vite être ue très grosse galère. Je me suis toujours posé une question : pourquoi est-ce qu'il y a ces deux systèmes de modules, comment ils ont émergé, pourquoi ils cohabitent encore aujourd'hui ? Et je suis pas le seul à me poser cette question, ça fait partie des outils qu'on utilise au quotidien, mais qu'on a très souvent pas besoin d'interroger. Sauf quand il y a un souci. On va tirer ça au clair ensemble.-->
+
+---
+layout: section
 ---
 
-# {{ $page - 1 }} &nbsp;&nbsp;&nbsp;Faire une page web <v-click> en 2004 </v-click>
+<span class="text-5xl font-bold">Pourquoi des modules ?</span>
+
+---
+
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp;Faire une page web <v-click> en 2004 </v-click>
 
 <div v-click="2" class="flex bg-[#ffffde] border border-black rounded-lg w-fit h-sm overflow-clip m-auto mt-10">
   <img v-click="2" src="./assets/instructions/1-1.png" />
@@ -52,14 +60,18 @@ Une page web se compose de trois éléments basiques: du contenu HTML, un style 
 layout: two-cols-header
 ---
 
-# {{ $page - 1 }} &nbsp;&nbsp;&nbsp;Java-SCRIPTS
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp;Java-SCRIPTS
 
 ::left::
 
 <div class="h-full relative">
   <img v-click.hide="1" src="./assets/instructions/2-1.png" width=100 class="absolute inset-0 m-auto" />
   <img v-click="[1, 2]" src="./assets/instructions/2-2.png" width=300 class="absolute inset-0 m-auto"  />
-  <img v-click="2" src="./assets/instructions/2-3.png" width=300 class="absolute inset-0 m-auto"  />
+  <img v-click="[2, 3]" src="./assets/instructions/2-3.png" width=100 class="absolute inset-0 top-15 m-auto"  />
+  <img v-click="[3, 4]" src="./assets/instructions/2-4.png" width=100 class="absolute inset-0 top-7 m-auto"  />
+  <img v-click="[4, 5]" src="./assets/instructions/2-5.png" width=120 class="absolute inset-0 right-4 m-auto"  />
+  <img v-click="[5, 6]" src="./assets/instructions/2-6.png" width=120 class="absolute inset-0 bottom-4 right-4 m-auto"  />
+  <img v-click="6" src="./assets/instructions/2-7.png" width=300 class="absolute inset-0 m-auto"  />
 </div>
 
 ::right::
@@ -77,7 +89,28 @@ layout: two-cols-header
 ```
 
 </div>
-<div v-click="2" class="absolute inset-0 m-auto size-fit">
+<div v-click="[2, 3]" class="absolute inset-0 m-auto size-fit">
+```html
+<script src="utils.js"></script>
+```
+
+</div>
+<div v-click="[3, 4]" class="absolute inset-0 m-auto size-fit">
+```html
+<script src="utils.js"></script>
+<script src="validation.js"></script>
+```
+
+</div>
+<div v-click="[4, 5]" class="absolute inset-0 m-auto size-fit">
+```html
+<script src="utils.js"></script>
+<script src="validation.js"></script>
+<script src="ajax.js"></script>
+```
+
+</div>
+<div v-click="[5, 6]" class="absolute inset-0 m-auto size-fit">
 ```html
 <script src="utils.js"></script>
 <script src="validation.js"></script>
@@ -86,30 +119,46 @@ layout: two-cols-header
 ```
 
 </div>
+<div v-click="6" class="absolute inset-0 m-auto size-fit">
+```html
+<script src="utils.js"></script>
+<script src="validation.js"></script>
+<script src="ajax.js"></script>
+<script src="main.js"></script>
+...
+```
+
+</div>
 </div>
 
-<!-- Le code JS est intégré aux pages HTML via le tag script. Les développeurs ont le choix de tout mettre dans un seul script énorme ou de diviser en plusieurs scripts (donc autant de balises). (sans parler des scripts tiers qui fonctionnent exactement de la même manière). Script inline ou fichier dédié, c'est exactement la même chose. Insister sur le fait que c'est via le document HTML que le javascript est parsé et exécuté. C'est dans le contexte HTML (document, navigateur) que le javascript est exécuté et donc que les scripts peuvent interagir entre eux. A cette époque on fait peu de javascript donc c'est pas un problème -->
+<!-- Le code JS est intégré aux pages HTML via le tag script. Pour des petits scripts autonome ça marche bien, mais si j'ai beaucoup de code couplé à mettre ? Les développeurs ont le choix de tout mettre dans un seul script énorme ou de diviser en plusieurs scripts (donc autant de balises). (sans parler des scripts tiers qui fonctionnent exactement de la même manière). Script inline ou fichier dédié, c'est exactement la même chose. Insister sur le fait que c'est via le document HTML que le javascript est parsé et exécuté. C'est dans le contexte HTML (document, navigateur) que le javascript est exécuté et donc que les scripts peuvent interagir entre eux. A cette époque on fait peu de javascript donc c'est pas un problème -->
 
 ---
 layout: two-cols-header
 ---
 
-# {{ $page - 1 }} &nbsp;&nbsp;&nbsp;Scripts et modularité
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp;Scripts ≠ Modules
 
 <!-- TODO: faire une fiche avec des étapes 1/2 pour illustrer l'ordre de chargement de main.js et utils.js -->
 
 ::left::
 <div class="h-full relative">
-  <img v-click="[1, 2]" src="./assets/instructions/3-1.png" width=400 class="absolute inset-0 m-auto"  />
-  <img v-click="[2, 3]" src="./assets/instructions/3-2.png" width=400 class="absolute inset-0 m-auto"  />
-  <img v-click="[3, 4]" src="./assets/instructions/3-3.png" width=400 class="absolute inset-0 m-auto"  />
-  <img v-click="4" src="./assets/instructions/3-3.png" width=400 class="absolute inset-0 m-auto"  />
+  <img v-click="[1, 2]" src="./assets/instructions/2-6.png" width=200 class="absolute inset-0 m-auto"  />
+  <img v-click="[2, 3]" src="./assets/instructions/3-5.png" width=200 class="absolute inset-0 m-auto"  />
+  <img v-click="[3, 4]" src="./assets/instructions/3-6.png" width=200 class="absolute inset-0 m-auto"  />
+  <img v-click="[4, 5]" src="./assets/instructions/3-7.png" width=260 class="absolute top-49 right-29 m-auto"  />
+
+
+  <img v-click="[5, 7]" src="./assets/instructions/3-1.png" width=400 class="absolute inset-0 m-auto"  />
+  <span v-click="6" class="absolute top-30 left-70 rotate-28">window</span>
+  <img v-click="[7, 8]" src="./assets/instructions/3-2.png" width=400 class="absolute inset-0 m-auto"  />
+  <img v-click="8" src="./assets/instructions/3-3.png" width=400 class="absolute inset-0 m-auto"  />
 </div>
 
 ::right::
 
 <div class="h-full relative">
-<div v-click="[2, 3]" class="absolute inset-0 m-auto size-fit">
+<div v-click="[1, 2]" class="absolute inset-0 m-auto size-fit">
 ```html
 <script src="utils.js"></script>
 <script src="main.js"></script>
@@ -127,13 +176,7 @@ console.log(formatDate(new Date()));
 ```
 
 </div>
-<div v-click="[3, 4]" class="absolute inset-0 m-auto size-fit">
-```html
-<script src="utils.js"></script>
-```
-
-</div>
-<div v-click="4" class="absolute inset-0 m-auto size-fit">
+<div v-click="[2, 4]" class="absolute inset-0 m-auto size-fit">
 ```html
 <script src="main.js"></script>
 <script src="utils.js"></script>
@@ -143,7 +186,6 @@ console.log(formatDate(new Date()));
 ```js
 // main.js
 console.log(formatDate(new Date()));
-// Uncaught ReferenceError: formatDate is not defined
 
 // utils.js
 function formatDate(date) {
@@ -152,15 +194,81 @@ function formatDate(date) {
 ```
 
 </div>
+<div v-click="[4, 5]" class="absolute inset-0 m-auto size-fit">
+```html
+<script src="main.js"></script>
+<script src="utils.js"></script>
+...
+```
+
+```js
+// main.js
+console.log(formatDate(new Date()));
+// Uncaught ReferenceError: 
+// formatDate is not defined
+
+// utils.js
+function formatDate(date) {
+  return date.toISOString().split('T')[0];
+}
+```
+
+</div>
+<div v-click="[7, 8]" class="absolute inset-0 m-auto size-fit">
+```html
+<script src="utils.js"></script>
+<script src="main.js"></script>
+...
+```
+
+```js
+// utils.js
+function formatPrice(price) {
+  return '$' + price.toFixed(2);
+}
+
+// Your code
+var displayPrice = formatPrice(19.99);
+console.log(displayPrice);
+// $19.99 👌
+```
+
+</div>
+<div v-click="8" class="absolute inset-0 m-auto size-fit">
+```html
+<script src="utils.js"></script>
+<script src="thirdParty.js"></script>
+<script src="main.js"></script>
+...
+```
+
+```js
+// utils.js
+function formatPrice(price) {
+  return '$' + price.toFixed(2);
+}
+
+// thirdParty.js 
+function formatPrice(price, currency) {
+  return price.toFixed(2) + currency;
+}
+
+// Your code
+var displayPrice = formatPrice(19.99);
+console.log(displayPrice);
+// 19.99undefined 🤯
+```
+
+</div>
 </div>
 
-<!-- Quand on combine des scripts: objet window global (dépendances implicites) et ordre de chargement qui compte, side effects et surtout collision car pas de namespace (t'es jamais sûr de pas écraser une variable définie ailleurs). En fait c'est comme tout concaténer dans un seul script -->
+<!-- Quand on combine des scripts: objet window global (dépendances implicites) et ordre de chargement qui compte, side effects et surtout collision car pas de namespace (t'es jamais sûr de pas écraser une variable définie ailleurs). En fait c'est comme tout concaténer dans un seul script. -->
 
 ---
 layout: two-cols-header
 ---
 
-# {{ $page - 1 }} &nbsp;&nbsp;&nbsp; Namespacing et IIFEs
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Namespacing et IIFEs
 
 ::left::
 <div v-click="1" class="flex flex-col bg-[#ffffde] border border-black rounded-lg h-fit w-fit overflow-clip m-auto mt-10">
@@ -220,7 +328,7 @@ console.log(MyApp.utils.formatDate(new Date()));
 layout: two-cols-header
 ---
 
-# {{ $page - 1 }} &nbsp;&nbsp;&nbsp;De l'autre côté du miroir
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; JavaScript sort des navigateurs
 
 ::left::
 <div class="h-full relative">
@@ -241,7 +349,7 @@ layout: two-cols-header
 transition: fade
 ---
 
-# {{ $page - 1 }} &nbsp;&nbsp;&nbsp;Un écosystème JavaScript côté-serveur ?
+# {{ $page - 2 }} &nbsp;&nbsp;&nbsp;Un écosystème JavaScript côté-serveur ?
 
 <div class="h-full grid place-items-center">
   <img v-click src="./assets/instructions/5-3.png" width=200>
@@ -258,10 +366,16 @@ layout: quote
 <!-- Le JS côté serveur a vraiment besoin d'un système de modules car il y aura beaucoup plus de code avec un usage plus général. K Dangoor crée un groupe de discussion nommé ServerJS, qui sera renommé rapidement CommonJS. Attention CommonJS ne fait partie du TC39, elle ne définit pas une spécification officielle de JavaScript. Une spécification pour un système de module est rapidement établie et adoptée par NodeJS.-->
 
 ---
+layout: section
+---
+
+<span class="text-5xl font-bold">Les modules CommonJS</span>
+
+---
 layout: two-cols-header
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Les modules CommonJS
+# {{ $page - 4 }} &nbsp;&nbsp;&nbsp; Une spécification simple
 
 ::left::
 
@@ -329,7 +443,7 @@ exports.foo = "foo";
 ```
 
 </div>
-<div v-click="[6, 7]" class="absolute inset-0 m-auto size-fit w-17/20">
+<div v-click="[6, 7]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
 // module.js
@@ -341,7 +455,7 @@ exports.bar = "bar";
 ```
 
 </div>
-<div v-click="[7, 8]" class="absolute inset-0 m-auto size-fit w-17/20">
+<div v-click="[7, 8]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
 // module.js
@@ -354,7 +468,7 @@ exports.baz = "baz";
 ```
 
 </div>
-<div v-click="[8, 9]" class="absolute inset-0 m-auto size-fit w-17/20">
+<div v-click="[8, 9]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
 // main.js
@@ -364,7 +478,7 @@ var module = require('./module');
 ```
 
 </div>
-<div v-click="9" class="absolute inset-0 m-auto size-fit w-17/20">
+<div v-click="9" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
 // main.js
@@ -378,6 +492,11 @@ var baz = module.baz; // 'baz'
 ```
 
 </div>
+<ul class="absolute h-30 bottom-0 right-0">
+  <li v-click="2">Fonction synchrone require()</li>
+  <li v-click="3">Exécution récursive des modules importés</li>
+  <li v-click="9">Import/export via les propriétés de l'objet exports</li>
+</ul>
 </div>
 
 
@@ -392,12 +511,24 @@ Comme on exécute les modules pour définir leur imports, attention aux side-eff
 layout: two-cols-header
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp;Dépendances circulaires
+# {{ $page - 4 }} &nbsp;&nbsp;&nbsp;Dépendances circulaires
+
+<div class="absolute inset-0 m-auto size-full">
+  <img v-click="[1, 6]" class="absolute top-30 left-50% -translate-x-50%" src="./assets/instructions/2-1.png" width=100 />
+  <Arrow v-click="[2, 6]" x1="530" y1="200" x2="620" y2="250" />
+  <img v-click="[2, 6]" class="absolute right-60 top-50% -translate-y-50%" src="./assets/instructions/2-1.png" width=100 />
+  <Arrow v-click="[3, 6]" x1="650" y1="300" x2="545" y2="375" />
+  <img v-click="[3, 6]" class="absolute bottom-30 left-50% -translate-x-50%" src="./assets/instructions/2-1.png" width=100 />
+  <Arrow v-click="[4, 6]" x1="430" y1="365" x2="340" y2="310" />
+  <img v-click="[4, 6]" class="absolute left-60 top-50% -translate-y-50%" src="./assets/instructions/2-1.png" width=100 />
+  <Arrow v-click="[5, 6]" x1="340" y1="250" x2="450" y2="180" />
+  <img v-click="[6, 7]" class="absolute inset-0 m-auto" src="./assets/instructions/21-5.png" width=200 />
+</div>
 
 ::left::
 
-<div class="h-full relative">
-<div v-click="[1, 4]" class="absolute inset-0 m-auto size-fit w-17/20">
+<div class="h-full relative mt-10">
+<div v-click="[7, 12]" class="absolute inset-0 size-fit w-17/20">
 
 ```js
 //a.js
@@ -405,7 +536,7 @@ var b = require('b.js');
 ```
 
 </div>
-<div v-click="[4, 5]" class="absolute inset-0 m-auto size-fit w-17/20">
+<div v-click="[12, 13]" class="absolute inset-0 size-fit w-17/20">
 
 ```js
 //a.js
@@ -415,7 +546,7 @@ var b = require('b.js');
 ```
 
 </div>
-<div v-click="5" class="absolute inset-0 m-auto size-fit w-17/20">
+<div v-click="[13, 16]" class="absolute inset-0 size-fit w-17/20">
 
 ```js
 //a.js
@@ -425,14 +556,55 @@ var b = require('b.js');
 
 exports.bar = "bar";
 ```
-
 </div>
+<div v-click="16" class="absolute inset-0 size-fit w-17/20">
+
+```js
+//a.js
+exports.foo = "foo";
+
+var b = require('b.js');
+
+exports.bar = "bar";
+
+console.log(b.baz); // "baz"
+```
+</div>
+
+  <div v-click="[8, 12]" class="absolute bottom-40 left-8 border border-black w-fit">
+      <span class="border-black border-r px-5">a.js</span>
+      <span class="px-5 inline-block w-60">{}</span>
+  </div>
+  <div v-click="[12, 15]" class="absolute bottom-40 left-8 border border-black w-fit">
+      <span class="border-black border-r px-5">a.js</span>
+      <span class="px-5 inline-block w-60">{ foo: "foo" }</span>
+  </div>
+  <div v-click="[15, 16]" class="absolute bottom-33 left-8 border border-black w-fit">
+    <div class="border-b border-black">
+      <span class="border-black border-r px-5">a.js</span>
+      <span class="px-5 inline-block w-60">{ foo: "foo" }</span>
+    </div>
+    <div>
+      <span class="border-black border-r px-5">b.js</span>
+      <span class="px-5 inline-block w-60">{ baz: "baz" }</span>
+    </div>
+  </div>
+  <div v-click="16" class="absolute bottom-33 left-8 border border-black w-fit">
+    <div class="border-b border-black">
+      <span class="border-black border-r px-5">a.js</span>
+      <span class="px-5 inline-block w-60">{ foo: "foo", bar: "bar" }</span>
+    </div>
+    <div>
+      <span class="border-black border-r px-5">b.js</span>
+      <span class="px-5 inline-block w-60">{ baz: "baz" }</span>
+    </div>
+  </div>
 </div>
 
 ::right::
 
-<div class="h-full relative">
-<div v-click="[1, 2]" class="absolute inset-0 m-auto size-fit w-17/20">
+<div class="h-full relative mt-10">
+<div v-click="[7, 10]" class="absolute inset-0 size-fit w-17/20">
 
 ```js
 //b.js
@@ -440,7 +612,7 @@ var a = require('a.js');
 ```
 
 </div>
-<div v-click="[2, 3]" class="absolute inset-0 m-auto size-fit w-17/20">
+<div v-click="[10, 11]" class="absolute inset-0 size-fit w-17/20">
 
 ```js
 //b.js
@@ -450,7 +622,7 @@ console.log(a.foo)
 ```
 
 </div>
-<div v-click="[3, 4]" class="absolute inset-0 m-auto size-fit w-17/20">
+<div v-click="[11, 12]" class="absolute inset-0 size-fit w-17/20">
 
 ```js
 //b.js
@@ -460,7 +632,7 @@ console.log(a.foo) // undefined
 ```
 
 </div>
-<div v-click="[4, 6]" class="absolute inset-0 m-auto size-fit w-17/20">
+<div v-click="[12, 14]" class="absolute inset-0 size-fit w-17/20">
 
 ```js
 //b.js
@@ -470,7 +642,7 @@ console.log(a.foo) // 'foo'
 ```
 
 </div>
-<div v-click="6" class="absolute inset-0 m-auto size-fit w-17/20">
+<div v-click="[14, 15]" class="absolute inset-0 size-fit w-17/20">
 
 ```js
 //b.js
@@ -481,6 +653,24 @@ console.log(a.bar) // undefined
 ```
 
 </div>
+<div v-click="15" class="absolute inset-0 size-fit w-17/20">
+
+```js
+//b.js
+var a = require('a.js');
+
+console.log(a.foo) // 'foo'
+console.log(a.bar) // undefined
+
+exports.baz = "baz";
+```
+
+</div>
+<ul class="absolute h-30 bottom-20 -right-5">
+  <li v-click="8">Les exports du module parent au moment de l'import sont exposés à l'enfant</li>
+  <li v-click="9">Les module sont cachés (une seule exécution)</li>
+  <li v-click="17">Exécution unique mais possiblement en plusieurs fois</li>
+</ul>
 </div>
 
 <!-- Les dépendances circulaires sont gérées en utilisant la valeur d'exports au moment où la dépendance circulaire commence. C'est-à-dire que quand on require un module, s'il a déjà été (même partiellement !) exécuté, il n'est pas exécuté à nouveau mais on utilise la valeur de son objet exports (qui pourra changer si l'exécution reprend après la résolution des dépendances). 
@@ -488,20 +678,20 @@ console.log(a.bar) // undefined
 Plusieurs conséquences: 
 * Les dépendances circulaires fonctionnent
 * Attention à l'ordre de chargement des modules qui change le résultat à l'exécution
-* Il y a donc un cache de modules: chaque module est chargé une seule fois (au total, ça peut se faire en plusieurs fois si on est interrompu par un require). -->
+* Il y a donc un cache de modules: c'est là qu'on stocke les exports du module qui importe. Chaque module est chargé une seule fois (au total, ça peut se faire en plusieurs fois si on est interrompu par un require). -->
 
 
 
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; De CommonJS à Node.js
+# {{ $page - 4 }} &nbsp;&nbsp;&nbsp; De CommonJS à Node.js
 
 <div class="h-full relative">
-  <img v-click="[1, 6]" src="./assets/instructions/6-1.png" width=200 class="absolute right-150 inset-0 m-auto">
-  <img v-click="[2, 6]" src="./assets/ringo-mascot.svg" width=100 class="absolute bottom-80 right-75 inset-0 m-auto">
-  <img v-click="[3, 6]" src="./assets/instructions/6-2.png" width=100 class="absolute bottom-80 left-75 inset-0 m-auto">
-  <img v-click="[4, 6]" src="./assets/instructions/6-3.png" width=100 class="absolute left-150 inset-0 m-auto">
-  <img v-click="[5, 7]" src="./assets/instructions/5-2.png" width=200 class="absolute inset-0 m-auto">
+  <img v-click="[1, 7]" src="./assets/instructions/5-2.png" width=200 class="absolute inset-0 m-auto">
+  <img v-click="[2, 6]" src="./assets/instructions/6-1.png" width=200 class="absolute right-150 inset-0 m-auto">
+  <img v-click="[3, 6]" src="./assets/instructions/6-4.png" width=150 class="absolute bottom-80 right-75 inset-0 m-auto">
+  <img v-click="[4, 6]" src="./assets/instructions/6-2.png" width=100 class="absolute bottom-80 left-75 inset-0 m-auto">
+  <img v-click="[5, 6]" src="./assets/instructions/6-3.png" width=100 class="absolute left-150 inset-0 m-auto">
   <img v-click="7" src="./assets/instructions/10-1.png" width=150 class="absolute inset-0 right-100 m-auto">
   <img v-click="7"src="./assets/instructions/10-2.png" width=180 class="absolute inset-0 left-100 m-auto">
 </div>
@@ -514,95 +704,43 @@ Ca créé des tensions dans la communauté (entre les contributeurs commonJS qui
 layout: two-cols-header
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Les modules Node.js: le module wrapper
+# {{ $page - 4 }} &nbsp;&nbsp;&nbsp; Le module wrapper de Node.js
 
 ::left::
 
 <div class="h-full relative">
-<div v-click="[1, 2]" class="absolute inset-0 m-auto size-fit">
-
-```js
-(function(exports, require, module, __filename, __dirname) {
-// Module code actually lives in here
-}); 
-```
-
-</div>
-<div v-click="[2, 3]" class="absolute inset-0 m-auto size-fit w-25/20">
-
-```js
-//main.js
-
-```
-
-</div>
-<div v-click="[3, 4]" class="absolute inset-0 m-auto size-fit w-25/20">
-
-```js
-//main.js
-var nestedModule = require('./subfolder/nestedModule.js');
-```
-
-</div>
-<div v-click="[4, 5]" class="absolute inset-0 m-auto size-fit w-25/20">
-
-```js
-//main.js
-var nestedModule = require('./a/module.js');
-
-console.log(nestedModule.require === require); // false
-
-```
-
-</div>
-<div v-click="5" class="absolute inset-0 m-auto size-fit">
-
-```js
-//main.js
-var nestedModule = require('./a/module.js');
-
-console.log(nestedModule.require === require); // false
-
-var sameLevelModule = nestedModule.require('./sameLevelModule.js');
-// Error: Cannot find module './sameLevelModule.js'
-```
-
-</div>
+  <img v-click="[1, 3]" src="./assets/instructions/2-1.png" width=100 class="absolute inset-0 m-auto" />
+  <span v-click="[2, 3]" class="absolute top-25 left-50 text-5xl font-bold">?</span>
+  <img v-click="3" src="./assets/instructions/11-1.png" width=200 class="absolute top-42 left-28 m-auto" />
 </div>
 
 ::right::
 
-<div class="h-full relative">
-<div v-click="[2, 4]" class="absolute inset-0 m-auto size-fit">
-
-```
-.
-├── main.js
-├── sameLevelModule.js
-└── subfolder/
-    └── nestedModule.js
-```
-
-</div>
-<div v-click="[4, 5]" class="absolute inset-0 m-auto size-fit">
+<div class="h-full relative mt-10">
+<div v-click="[1, 3]" class="absolute size-fit">
 
 ```js
-//nestedModule.js
-exports.require = require;
+var count = require("./count.js");
+
+exports.foo = "foo"
 ```
 
 </div>
-<div v-click="5" class="absolute inset-0 m-auto size-fit">
+<div v-click="3" class="absolute size-fit">
 
-```
-.
-├── main.js
-├── sameLevelModule.js
-└── subfolder/
-    └── nestedModule.js
+```js
+(function(exports, require, module, __filename, __dirname) {
+  var count = require("./count.js");
+
+  exports.foo = "foo"
+}); 
 ```
 
 </div>
+<ul class="absolute bottom-30 right-0">
+  <li v-click="4">Les fonctions et objets relatifs aux modules sont injectés comme arguments d'une fonction</li>
+  <li v-click="5">Apparence de variables globales, mais uniques à chaque module</li>
+</ul>
 </div>
 
  <!-- Spécificités de l'implémentation de node. 
@@ -613,7 +751,7 @@ Objet module. -->
 layout: two-cols-header
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; L'objet module
+# {{ $page - 4 }} &nbsp;&nbsp;&nbsp; L'objet module
 
 ::left::
 
@@ -626,8 +764,8 @@ layout: two-cols-header
 
 ::right::
 
-<div class="h-full relative">
-<div v-click="[1, 2]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div class="h-full relative ps-10 pt-10">
+<div v-click="[1, 2]" class="absolute w-17/20">
 
 ```js
 // module.js
@@ -637,17 +775,31 @@ exports.baz = "baz";
 ```
 
 </div>
-<div v-click="[2, 4]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div v-click="[2, 3]" class="absolute w-17/20">
 
 ```js
 // module.js
-(...)
+class MyClass {
+  ...
+}
+
+exports.instance = new MyClass();
+```
+
+</div>
+<div v-click="[3, 4]" class="absolute w-17/20">
+
+```js
+// module.js
+class MyClass {
+  ...
+}
 
 exports = new MyClass();
 ```
 
 </div>
-<div v-click="[4, 5]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div v-click="[4, 5]" class="absolute w-17/20">
 
 ```js
 // main.js
@@ -655,7 +807,7 @@ var MyClass = require('./module.js'); // {}
 ```
 
 </div>
-<div v-click="5 " class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div v-click="[5, 6]" class="absolute w-17/20">
 
 ```js
 // module.js
@@ -665,6 +817,22 @@ module.exports = new MyClass();
 ```
 
 </div>
+<div v-click="6" class="absolute w-17/20">
+
+```js
+// module.js
+(...)
+
+module.exports = new MyClass();
+console.log(module.exports === exports); // true
+```
+
+</div>
+<ul class="absolute bottom-0">
+  <li v-click="1">Les exports fonctionnent par création de propriétés sur l'objet exports</li>
+  <li v-click="3">Impossible de réassigner un argument de fonction</li>
+  <li v-click="6">exports est un raccourci pour module.exports</li>
+</ul>
 </div>
 
 <!-- Jusqu'ici on a uniquement exporté via exports, comme d'après la spec CommonJS. Mais c'est pas la façon habituelle de faire, on utilise module.exports. Simple question d'assignation, si on veut retourner une seule valeur (genre une instance de classe), on ne peut pas réassigner l'objet exports (on change la référence, ça devient un objet local au module) -->
@@ -673,14 +841,23 @@ module.exports = new MyClass();
 layout: two-cols-header
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Manipulation de modules
+# {{ $page - 4 }} &nbsp;&nbsp;&nbsp; Manipulation de modules
 
 ::left::
 
 <div class="h-full relative">
-  <img v-click.hide="1" src="./assets/instructions/13-1.png" width=400 class="absolute inset-0 m-auto"  />
-  <img v-click="[1, 4]" src="./assets/instructions/14-1.png" width=200 class="absolute inset-0 m-auto"  />
-  <img v-click="4" src="./assets/instructions/14-2.png" width=234 class="absolute inset-0 right-8 m-auto"  />
+  <img v-click.hide="1" src="./assets/instructions/13-1.png" width=400 class="absolute top-10 m-auto"  />
+  <img v-click="[1, 4]" src="./assets/instructions/14-1.png" width=200 class="absolute top-5 left-25 m-auto"  />
+  <img v-click="4" src="./assets/instructions/14-2.png" width=234 class="absolute top-5 left-17 m-auto"  />
+
+  <div v-click="[1, 4]" class="absolute bottom-20 -left-5 border border-black w-fit">
+    <span class="border-black border-r px-1">module.js</span>
+    <span class="px-1 inline-block">{ foo: function() { console.log('foo'); } }</span>
+  </div>
+  <div v-click="4" class="absolute bottom-20 -left-5 border border-black w-fit">
+    <span class="border-black border-r px-1">module.js</span>
+    <span class="px-1 inline-block">{ foo: function() { console.log('bar'); } }</span>
+  </div>
 </div>
 
 ::right::
@@ -749,16 +926,21 @@ module2.foo(); // 'bar'
 ```
 
 </div>
+<ul class="absolute bottom-10">
+  <li v-click="3">Chaque module n'est exécuté qu'une fois</li>
+  <li v-click="4">Les propriétés des modules sont mutables 🤯</li>
+  <li v-click="6">Les modifications sont visibles globalement</li>
+</ul>
 </div>
 
 <!-- Comme chaque module est instancié une seule fois, du coup un module peut en modifier un autre et la modification est active pour tous les autres consommateurs. -->
 
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; En résumé
+# {{ $page - 4 }} &nbsp;&nbsp;&nbsp; Un système de modules synchrone
 
-<div class="absolute inset-0 m-auto w-3/4 h-fit pb-5 pt-10 border border-black rounded-md flex items-center justify-evenly z-1">
-  <div class="absolute m-auto top-0">require()</div>
+<div class="absolute inset-0 m-auto w-3/4 h-fit pb-5 pt-12 border border-black rounded-md flex items-center justify-evenly z-1">
+  <div class="absolute m-auto top-2">require()</div>
   <div class="absolute -z-1 flex items-center">
     <div class="w-200 h-10 bg-gray-500"></div>
     <div class="w-0 h-0 border-t-30 border-t-transparent border-l-30 border-l-gray-500 border-b-30 border-b-transparent"></div>
@@ -777,7 +959,7 @@ module2.foo(); // 'bar'
 
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; En résumé
+# {{ $page - 4 }} &nbsp;&nbsp;&nbsp; En résumé
 
 <div class="h-full relative">
   <img v-click="1" src="./assets/instructions/16-1.png" width=200 class="absolute right-100 bottom-50 inset-0 m-auto">
@@ -795,29 +977,40 @@ module2.foo(); // 'bar'
 
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Le trou noir ECMAScript des années 2000
+# {{ $page - 4 }} &nbsp;&nbsp;&nbsp; Pendant ce temps au TC39...
 
 <div class="h-full">
-  <img v-click="[1, 2]" src="./assets/instructions/17-1.png" class="absolute inset-0 m-auto" width=200>
-  <img v-click="[2, 3]" src="./assets/instructions/17-2.png" class="absolute inset-0 m-auto" width=220>
-  <img v-click="[3, 4]" src="./assets/instructions/17-3.png" class="absolute inset-0 m-auto" width=240>
-  <img v-click="[4, 5]" src="./assets/instructions/17-4.png" class="absolute inset-0 m-auto" width=300>
-  <img v-click="[5, 6]" src="./assets/instructions/17-5.png" class="absolute inset-0 m-auto" width=350>
-  <img v-click="6" src="./assets/instructions/17-1.png" class="absolute inset-0 m-auto" width=200>
+  <img v-click="[1, 2]" src="./assets/instructions/17-1.png" class="absolute inset-0 top-50 m-auto" width=150>
+  <span v-click="[2, 6]" class="absolute top-90 right-65 m-auto">Classes</span>
+  <img v-click="[2, 3]" src="./assets/instructions/17-2.png" class="absolute inset-0 top-45 left-13 m-auto" width=197>
+  <span v-click="[3, 6]" class="absolute top-85 left-65 m-auto">Interfaces</span>
+  <img v-click="[3, 4]" src="./assets/instructions/17-3.png" class="absolute inset-0 top-37 left-10 m-auto" width=210>
+  <span v-click="[4, 6]" class="absolute top-60 left-50 m-auto">Typage strict</span>
+  <img v-click="[4, 5]" src="./assets/instructions/17-4.png" class="absolute inset-0 top-26 right-8 m-auto" width=280>
+  <span v-click="[5, 6]" class="absolute top-40 right-30 m-auto">Modules<br> et namespaces</span>
+  <img v-click="[5, 6]" src="./assets/instructions/17-5.png" class="absolute inset-0 top-14 left-9 m-auto" width=348>
+  <img v-click="6" src="./assets/instructions/17-1.png" class="absolute inset-0 top-50 m-auto" width=150>
 </div>
 
 <!-- Pourquoi les modules sont pas dans la spec ? A la base JS est un petit langage de script, standarisé en ECMAScript. PB: dans les années 2000, aucune évolution du langage ou presque (projet de ES4 avec des packages (modules) beaucoup trop ambitieux bloqué par Microsoft). Aucune sortie majeure avant ES6 en 2015. Les modules sont dans ES6, moins ambitieux que les packages. -->
 
 ---
+layout: section
+---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Le standard ESM
+<span class="text-5xl font-bold">Les modules ECMAScript</span>
+
+
+---
+
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Le standard ESM
 
 <div v-click="[1, 2]" class="absolute inset-0 w-full flex justify-evenly items-center">
   <img class="max-h-xs" src="./assets/instructions/laptop.png">
   <img class="max-h-xs" src="./assets/instructions/server.png">
 </div>
 
-<img v-click="[2, 3]" class="absolute inset-0 m-auto max-h-70" src="./assets/instructions/18-2.png">
+<img v-click="[2, 3]" class="absolute inset-0 m-auto top-10 max-h-70" src="./assets/instructions/18-2.png">
 
 <div v-click="[3, 5]" class="absolute inset-0 w-full flex justify-evenly items-center">
   <div class="p-10">
@@ -837,27 +1030,16 @@ module2.foo(); // 'bar'
   </div>
 </div>
 
-<div v-click="[6, 10]" class="absolute inset-0 w-full flex justify-evenly items-center">
+<div v-click="6" class="absolute inset-0 w-full flex justify-evenly items-center">
   <div class="p-10 bg-green-100 outline outline-1 outline-black rounded-lg relative">
     <img v-click="7" class="max-h-10 absolute top-2 right-2" src="./assets/JS_logo.png">
     <img class="max-h-60" src="./assets/instructions/18-3.png">
   </div>
+  <Arrow v-click="10" x1="380" y1="250" x2="505" y2="250" />
+  <Arrow v-click="10" x1="505" y1="300" x2="380" y2="300" />
   <div class="p-10 bg-red-100 outline outline-1 outline-black rounded-lg relative">
     <img v-click="8" class="max-h-10 absolute top-2 right-2" src="./assets/HTML_logo.webp">
     <img v-click="9" class="max-h-10 absolute top-2 right-12" src="./assets/node_logo.svg">
-    <img class="max-h-60" src="./assets/instructions/18-4.png">
-  </div>
-</div>
-
-<div v-click="10" class="absolute inset-0 w-full flex justify-evenly items-center">
-  <div class="p-10 bg-green-100 outline outline-1 outline-black rounded-lg relative">
-    <img class="max-h-10 absolute top-2 right-2" src="./assets/JS_logo.png">
-    <img class="max-h-60" src="./assets/instructions/18-3.png">
-  </div>
-  <div class="w-content"><code v-click="11" class="text-white">HostLoadImportedModule</code></div>
-  <div class="p-10 bg-red-100 outline outline-1 outline-black rounded-lg relative">
-    <img class="max-h-10 absolute top-2 right-2" src="./assets/HTML_logo.webp">
-    <img class="max-h-10 absolute top-2 right-12" src="./assets/node_logo.svg">
     <img class="max-h-60" src="./assets/instructions/18-4.png">
   </div>
 </div>
@@ -868,40 +1050,12 @@ module2.foo(); // 'bar'
 layout: two-cols-header
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Une nouvelle interface
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Une nouvelle interface
 
 ::left::
 
 <div class="h-full relative">
-<div class="h-full relative">
-<div v-click="[1, 2]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-import defaultExport from "module-name";
-```
-    
-</div>
-<div v-click="[2, 3]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-import defaultExport from "module-name";
-
-import * as name from "module-name";
-```
-    
-</div>
-<div v-click="[3, 4]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-import defaultExport from "module-name";
-
-import * as name from "module-name";
-
-import { export1 } from "module-name";
-```
-    
-</div>
-<div v-click="[4, 5]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+<div v-click="1" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
 
 ```js
 import defaultExport from "module-name";
@@ -911,133 +1065,8 @@ import * as name from "module-name";
 import { export1 } from "module-name";
 
 import { export1 as alias1 } from "module-name";
-```
-    
-</div>
-<div v-click="[5, 6]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-import defaultExport from "module-name";
-
-import * as name from "module-name";
-
-import { export1 } from "module-name";
-
-import { export1 as alias1 } from "module-name";
-```
-    
-</div>
-<div v-click="[6, 7]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-import defaultExport from "module-name";
-
-import * as name from "module-name";
-
-import { export1 } from "module-name";
-
-import { export1 as alias1 } from "module-name";
-
-import { default as alias } from "module-name";
-```
-    
-</div>
-<div v-click="[7, 8]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-import defaultExport from "module-name";
-
-import * as name from "module-name";
-
-import { export1 } from "module-name";
-
-import { export1 as alias1 } from "module-name";
-
-import { default as alias } from "module-name";
 
 import { export1, export2 } from "module-name";
-```
-    
-</div>
-<div v-click="[8, 9]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-import defaultExport from "module-name";
-
-import * as name from "module-name";
-
-import { export1 } from "module-name";
-
-import { export1 as alias1 } from "module-name";
-
-import { default as alias } from "module-name";
-
-import { export1, export2 } from "module-name";
-
-import { "string name" as alias } from "module-name";
-```
-    
-</div>
-<div v-click="[9, 10]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-import defaultExport from "module-name";
-
-import * as name from "module-name";
-
-import { export1 } from "module-name";
-
-import { export1 as alias1 } from "module-name";
-
-import { default as alias } from "module-name";
-
-import { export1, export2 } from "module-name";
-
-import { "string name" as alias } from "module-name";
-
-import defaultExport, { export1 } from "module-name";
-```
-    
-</div>
-<div v-click="[10, 11]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-import defaultExport from "module-name";
-
-import * as name from "module-name";
-
-import { export1 } from "module-name";
-
-import { export1 as alias1 } from "module-name";
-
-import { default as alias } from "module-name";
-
-import { export1, export2 } from "module-name";
-
-import { "string name" as alias } from "module-name";
-
-import defaultExport, { export1 } from "module-name";
-
-import defaultExport, * as name from "module-name";
-```
-    
-</div>
-<div v-click="11" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-import defaultExport from "module-name";
-
-import * as name from "module-name";
-
-import { export1 } from "module-name";
-
-import { export1 as alias1 } from "module-name";
-
-import { default as alias } from "module-name";
-
-import { export1, export2 } from "module-name";
-
-import { "string name" as alias } from "module-name";
 
 import defaultExport, { export1 } from "module-name";
 
@@ -1048,29 +1077,11 @@ import "module-name";
     
 </div>
 </div>
-</div>
 
 ::right::
 
 <div class="h-full relative">
-<div class="h-full relative">
-<div v-click="[12, 13]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-export const name1 = 1, name2 = 2/*, … */;
-```
-    
-</div>
-<div v-click="[13, 14]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-export const name1 = 1, name2 = 2/*, … */;
-
-export { name1, /* …, */ nameN };
-```
-    
-</div>
-<div v-click="[14, 15]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+<div v-click="2" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
 
 ```js
 export const name1 = 1, name2 = 2/*, … */;
@@ -1078,87 +1089,8 @@ export const name1 = 1, name2 = 2/*, … */;
 export { name1, /* …, */ nameN };
 
 export { variable1 as name1, variable2 as name2 };
-```
-    
-</div>
-<div v-click="[15, 16]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-export const name1 = 1, name2 = 2/*, … */;
-
-export { name1, /* …, */ nameN };
-
-export { variable1 as name1, variable2 as name2 };
-
-export { variable1 as "string name" };
-```
-    
-</div>
-<div v-click="[16, 17]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-export const name1 = 1, name2 = 2/*, … */;
-
-export { name1, /* …, */ nameN };
-
-export { variable1 as name1, variable2 as name2 };
-
-export { variable1 as "string name" };
 
 export { name1 as default /*, … */ };
-```
-    
-</div>
-<div v-click="[17, 18]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-export const name1 = 1, name2 = 2/*, … */;
-
-export { name1, /* …, */ nameN };
-
-export { variable1 as name1, variable2 as name2 };
-
-export { variable1 as "string name" };
-
-export { name1 as default /*, … */ };
-
-export default expression;
-```
-    
-</div>
-<div v-click="[18, 19]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-export const name1 = 1, name2 = 2/*, … */;
-
-export { name1, /* …, */ nameN };
-
-export { variable1 as name1, variable2 as name2 };
-
-export { variable1 as "string name" };
-
-export { name1 as default /*, … */ };
-
-export default expression;
-
-export default function functionName() { /* … */ }
-```
-    
-</div>
-<div v-click="19" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
-
-```js
-export const name1 = 1, name2 = 2/*, … */;
-
-export { name1, /* …, */ nameN };
-
-export { variable1 as name1, variable2 as name2 };
-
-export { variable1 as "string name" };
-
-export { name1 as default /*, … */ };
-
-export default expression;
 
 export default function functionName() { /* … */ }
 
@@ -1167,35 +1099,13 @@ export * from "module-name";
     
 </div>
 </div>
-</div>
 
 <!-- Présentation de l'interface, statement et fonction import. Insister sur le statement, toujours top level, analysable de manière statique. Pas du tout utilisé lors de l'exécution d'un fichier mais uniquement lors d'une phase de construction des modules.
-* Imports:
-Default (une seule valeur, équivalent module.exports)
-Namespace (équivalent exports.foo)
-Named (possibilité de rename)
-Rename le default (pareil que de direct renommer le défault): intéressant, ça veut dire que l'export default n'a rien de spécial, il a juste le nom défault
-Plusieurs exports named (ressemble à de la destructuration mais pas vraiment)
-Imports strings (obligé de rennomer)
-Identifiants arbitraires (parce que WASM génère des exports en unicode qui ne sont pas forcément des identifiants (espaces, tirets, etc.))
-Combinaison de default + named
-Combinaison de default + namespace (namespace + named impossible)
-Import de side-effect (juste faire tourner le top-level code)
-
-* Exports:
-Nommés (déclaration de variable, constante, fonction, classe)
-Nommés de valeurs déjà déclarées
-Renommage possible
-Identifiants arbitraires (toutes valeurs possibles)
-Exporter une valeur comme défaut (juste un nom)
-Export par défaut (n'importe quelle expression ou déclaration de fonction/classe (mais pas de statement))
-Re-export (namespace, named, default)
-
  -->
 
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Comment charger un module ?
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Comment charger un module ?
 
 <div v-click="2" class="flex bg-[#ffffde] border border-black rounded-lg w-fit h-sm overflow-clip m-auto mt-10 items-center p-5">
   <div v-click="2" class="max-h-80 p-8 py-10 pt-12 relative">
@@ -1218,29 +1128,29 @@ Re-export (namespace, named, default)
 layout: two-cols-header
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Construction
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Construction
 
 ::left::
 
 <div class="h-full relative">
-  <img v-click="[1, 3]" src="./assets/instructions/19-2.png" width=100 class="absolute inset-0 m-auto"  />
-  <img v-click="[3, 6]" src="./assets/instructions/20-1.png" width=30 class="absolute inset-0 m-auto -translate-x-30"  />
-  <img v-click="[4, 6]" src="./assets/instructions/20-2.png" width=70 class="absolute inset-0 m-auto"  />
-  <img v-click="[5, 6]" src="./assets/instructions/20-3.png" width=70 class="absolute inset-0 m-auto translate-x-30"  />
-  <img v-click="6" src="./assets/instructions/19-1.png" width=300 class="absolute inset-0 m-auto"  />
+  <img v-click="[1, 4]" src="./assets/instructions/19-2.png" width=100 class="absolute inset-0 m-auto"  />
+  <img v-click="[4, 7]" src="./assets/instructions/20-1.png" width=30 class="absolute inset-0 m-auto -translate-x-30"  />
+  <img v-click="[5, 7]" src="./assets/instructions/20-2.png" width=70 class="absolute inset-0 m-auto"  />
+  <img v-click="[6, 7]" src="./assets/instructions/20-3.png" width=70 class="absolute inset-0 m-auto translate-x-30"  />
+  <img v-click="7" src="./assets/instructions/19-1.png" width=300 class="absolute inset-0 m-auto"  />
 </div>
 
 ::right::
 
 <div class="h-full relative">
-<div v-click="[2, 3]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div v-click="[3, 4]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```html
 <script src="main.js" type="module">
 ```
 
 </div>
-<div v-click="[3, 4]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div v-click="[4, 5]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
 // main.js
@@ -1250,7 +1160,7 @@ import { something } from "module.js"
 ```
 
 </div>
-<div v-click="[4, 5]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div v-click="[5, 6]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
 // module.js
@@ -1260,7 +1170,7 @@ import { somethingElse } from "anotherModule.js"
 ```
 
 </div>
-<div v-click="5" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div v-click="6" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
 // anotherModule.js
@@ -1270,6 +1180,12 @@ import { anotherThing } from "otherModule.js"
 ```
 
 </div>
+<ul class="absolute left-10 bottom-10">
+  <li v-click="2">Tous les modules sont chargés avant l'exécution du code</li>
+  <li v-click="3">L'arbre de modules est construit à partir du point d'entrée</li>
+  <li v-click="4">Chaque import est résolu et récupéré par le loader</li>
+  <li v-click="7">L'interpréteur transforme le code source en module record et met en cache</li>
+</ul>
 </div>
 
 
@@ -1281,7 +1197,7 @@ import { anotherThing } from "otherModule.js"
 layout: two-cols-header
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Instanciation
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Instanciation
 
 ::left::
 
@@ -1290,7 +1206,8 @@ layout: two-cols-header
   <img v-click="[2, 3]" src="./assets/instructions/21-2.png" width=190 class="absolute inset-0 m-auto"  />
   <img v-click="[3, 4]" src="./assets/instructions/21-3.png" width=190 class="absolute inset-0 m-auto"  />
   <img v-click="[4, 6]" src="./assets/instructions/21-4.png" width=190 class="absolute inset-0 m-auto"  />
-  <img v-click="6" src="./assets/instructions/21-5.png" width=190 class="absolute inset-0 m-auto"  />
+  <img v-click="[6, 7]" class="max-h-90 absolute inset-0 m-auto" src="./assets/instructions/19-2.png"  />
+  <img v-click="7" src="./assets/instructions/21-5.png" width=190 class="absolute inset-0 m-auto"  />
 </div>
 
 ::right::
@@ -1342,7 +1259,7 @@ export function increment() { count++ }
 ```
 
 </div>
-<div v-click="[5, 6]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div v-click="[5, 7]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
 // module.js
@@ -1360,7 +1277,7 @@ console.log(count); // 1
 ```
 
 </div>
-<div v-click="6" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div v-click="7" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
 // a.js
@@ -1368,7 +1285,7 @@ import { value } from './b.js';
 export const value = 'a';
 export const getValue = () => value;
 ```
-<div v-click="7">
+<div v-click="8">
 ```js
 // b.js
 import { value } from './a.js';
@@ -1377,7 +1294,7 @@ export const getValue = () => value;
 ```
 </div>
 
-<div v-click="8">
+<div v-click="9">
 ```js
 // main.js
 import { getValue as getA } from './a.js';
@@ -1388,26 +1305,45 @@ console.log(getB()); // 'a'
 </div>
 
 </div>
+<ul v-click.hide="7" class="absolute left-10 bottom-0">
+  <li v-click="1">L'arbre des modules est parcouru dans l'ordre inverse</li>
+  <li v-click="3">Un espace mémoire est attribué à chaque export</li>
+  <li v-click="5">Les imports sont liés au même espace mémoire (les valeurs ne sont pas copiées)</li>
+</ul>
 </div>
 
 <!-- Phase de linking: réserver des espaces mémoire pour les objets qui sont importés/exportés, les espaces mémoires ne sont pas remplis à ce moment-là (il faudrait exécuter le code). Live bindings: l'import et l'export pointent sur le même espace mémoire, on ne peut pas réassigner un import. Ca permet de gérer les dépendances cycliques et de créer un arbre sans exécuter aucun code (en cjs puisqu'on copie les valeurs il faut bien connaître les valeurs). Les modules sont instanciés par le moteur.-->
 
 ---
+layout: two-cols-header
+---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Evaluation
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Evaluation
 
-<img class="absolute inset-0 m-auto max-h-100" src="./assets/instructions/19-3.png" />
+::left::
+
+<ul class="mt-30">
+  <li v-click="1">L'arbre des modules est parcouru dans l'ordre inverse</li>
+  <li v-click="2">Le code est exécuté (avec les effets de bord) 🎉</li>
+  <li v-click="3">Chaque module n'est évalué qu'une seule fois</li>
+</ul>
+
+
+
+::right::
+
+<img class="m-auto max-h-115 -mt-12" src="./assets/instructions/19-3.png" />
 
 <!-- Phase d'évaluation, le code est évalué dans l'ordre inverse (on part des feuilles de l'arbre, les modules qui n'ont pas de dépendance) et on exécute le code de top-niveau. On remplit les espaces mémoire avec les valeurs.-->
 
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Pourquoi c'est mieux ?
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Quels bénéfices ?
 
 <div class="h-full relative">
   <img v-click="1" src="./assets/instructions/23-1.png" width=80 class="absolute right-100 bottom-50 inset-0 m-auto">
   <img v-click="2" src="./assets/instructions/laptop.png" width=170 class="absolute left-70 bottom-50 inset-0 m-auto">
-  <img v-click="3" src="./assets/instructions/5-2.png" width=150 class="absolute right-150 top-50 inset-0 m-auto">
+  <img v-click="3" src="./assets/instructions/23-3.png" width=80 class="absolute right-150 top-50 inset-0 m-auto">
   <img v-click="4" src="./assets/instructions/21-5.png" width=150 class="absolute top-50 inset-0 m-auto">
   <img v-click="5" src="./assets/instructions/23-5.png" width=80 class="absolute left-150 top-50 inset-0 m-auto">
 </div>
@@ -1424,7 +1360,7 @@ Static: analysable, tree-shakeable
 layout: two-cols-header
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Parse goals
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Modules ≠ Scripts
 
 ::left::
 
@@ -1542,7 +1478,7 @@ import something from "otherModule.js"
 layout: two-cols-header
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Interopérabilité
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Interopérabilité
 
 ::left::
 
@@ -1624,9 +1560,26 @@ module.exports = "bar";
 
 ---
 
-# {{ $page - 2 }} &nbsp;&nbsp;&nbsp; Conclusion
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Conclusion
+
+<div class="absolute inset-0 w-full flex justify-evenly items-center">
+  <img v-click="1" src="./assets/instructions/25-1.png" width=150>
+  <img v-click="2" src="./assets/instructions/25-2.png" width=350>
+</div>
 
 <!-- TODO Mention des nodisms pour le CJS (bare imports, pas d'extension)-->
 
 <!-- Deux solutions fondamentalement différentes (pas la même nature) au même problème. Persistance des CJS même si la norme sont les ESM car c'est encore central dans node, et le code legacy a été fait pour le CJS donc les migrations sont difficiles. Utiliser l'ESM, connaître les différences entre les deux pour pouvoir fonctionner avec l'ESM. La plupart des apps web sont bundlées donc en fait l'impact est plus sur la devx que sur le runtime vraiment. -->
+
+---
+
+<div class="flex justify-evenly items-center h-full">
+  <img src="./assets/portrait-lego.png" width=300 />
+  <div class="flex flex-col items-center gap-10">
+    <div class="text-3xl font-bold">Théo Gianella</div>
+    <div class="text-xl -mt-8">Développeur web</div>
+    <img src="./assets/Logo-Zenika.svg" />
+  </div>
+</div>
+
 
