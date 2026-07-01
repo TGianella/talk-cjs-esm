@@ -72,3 +72,7 @@
     @apply text-6xl font-500 leading-20;
   }
 }
+
+.slidev-layout .slidev-code {
+  border: 1px solid rgb(80, 80, 80);
+}

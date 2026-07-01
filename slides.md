@@ -24,17 +24,86 @@ duration: 50min
 
 <div class="absolute top-30px left-30px flex flex-col gap-1">
   <img src='./assets/JS_lego.png' width="85" />
-  <span class="text-sm font-bold">13/01/2026</span>
+  <span class="text-sm font-bold">02/07/2026</span>
 </div>
 
 <div class="absolute left-0 bg-[url(/lego_computer_3-1.png)] w-full h-[33vw] bg-contain bg-no-repeat"></div>
 <div class="absolute font-bold bottom-16px right-30px flex gap-5 items-end">
-  <span class="pb-1">9+</span>
-  <span class="pb-1">Théo Gianella</span>
-  <img src="./assets/logo_lyon_js.png" width=50/>
+  <span class="pb-2">9+</span>
+  <span class="pb-2">Théo Gianella</span>
+  <img src="./assets/logo-sunny-tech.svg" width=50/>
 </div>
 
-<!-- Introduction: en étant arrivé dans la tech dans les années 2020, quand je me suis formé à JavaScript, j'ai principalement travaillé avec de l'ESM. Dans un coin de ma tête, et dans des vielles docs j'ai vu qu'il existait un autre format de modules, le common JS. Dans mon environnement actuel de travail (un projet de plus de 10 ans) je dois cohabiter avec les deux. Je connais les basiques des deux systèmes, quelle est leur syntaxe, etc. mais très souvent dès qu'il faut aller plus loin, ça peut vite être ue très grosse galère. Je me suis toujours posé une question : pourquoi est-ce qu'il y a ces deux systèmes de modules, comment ils ont émergé, pourquoi ils cohabitent encore aujourd'hui ? Et je suis pas le seul à me poser cette question, ça fait partie des outils qu'on utilise au quotidien, mais qu'on a très souvent pas besoin d'interroger. Sauf quand il y a un souci. On va tirer ça au clair ensemble.-->
+---
+
+# {{ $page - 1 }} &nbsp;&nbsp;&nbsp; Avez-vous déjà vu..?
+
+<div class="h-full relative">
+
+<div v-click class="err absolute top-14 left-22 w-fit -rotate-6">
+
+```text
+Error [ERR_REQUIRE_ESM]: require() of ES Module
+./node_modules/chalk/index.js not supported.
+```
+
+</div>
+
+<div v-click class="err absolute top-15 left-70 w-fit rotate-5">
+
+```text
+SyntaxError: Cannot use import statement
+outside a module
+```
+
+</div>
+
+<div v-click class="err absolute top-38 left-48 w-fit rotate-3">
+
+```text
+ReferenceError: require is not defined
+in ES module scope, you can use import instead
+```
+
+</div>
+
+<div v-click class="err absolute top-25 left-92 w-fit -rotate-3">
+
+```text
+SyntaxError: Named export 'render' not found.
+The requested module 'react-dom' is a CommonJS module…
+```
+
+</div>
+
+<div v-click class="err absolute top-50 left-32 w-fit -rotate-2">
+
+```text
+ReferenceError: __dirname is not defined
+in ES module scope
+```
+
+</div>
+
+<div v-click class="err absolute top-45 left-78 w-fit rotate-7">
+
+```text
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module
+'./utils' — did you mean to import './utils.js'?
+```
+
+</div>
+
+</div>
+
+<style scoped>
+.err pre {
+  font-size: 0.62rem;
+  line-height: 1.2;
+}
+</style>
+
+<!-- Demander aux gens qui a déjà vu une de ces erreurs -->
 
 ---
 layout: section
@@ -509,6 +578,7 @@ Comme on exécute les modules pour définir leur imports, attention aux side-eff
 
 ---
 layout: two-cols-header
+disabled: true
 ---
 
 # {{ $page - 4 }} &nbsp;&nbsp;&nbsp;Dépendances circulaires
@@ -749,6 +819,7 @@ Objet module. -->
 
 ---
 layout: two-cols-header
+disabled: true
 ---
 
 # {{ $page - 4 }} &nbsp;&nbsp;&nbsp; L'objet module
@@ -839,6 +910,7 @@ console.log(module.exports === exports); // true
 
 ---
 layout: two-cols-header
+disabled: true
 ---
 
 # {{ $page - 4 }} &nbsp;&nbsp;&nbsp; Manipulation de modules
@@ -1048,6 +1120,7 @@ layout: section
 
 ---
 layout: two-cols-header
+disabled: true
 ---
 
 # {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Une nouvelle interface
@@ -1105,7 +1178,7 @@ export * from "module-name";
 
 ---
 
-# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Comment charger un module ?
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Comment charger des modules ?
 
 <div v-click="2" class="flex bg-[#ffffde] border border-black rounded-lg w-fit h-sm overflow-clip m-auto mt-10 items-center p-5">
   <div v-click="2" class="max-h-80 p-8 py-10 pt-12 relative">
@@ -1202,12 +1275,11 @@ layout: two-cols-header
 ::left::
 
 <div class="h-full relative">
-  <img v-click="[1, 2]" src="./assets/instructions/21-1.png" width=190 class="absolute inset-0 m-auto"  />
-  <img v-click="[2, 3]" src="./assets/instructions/21-2.png" width=190 class="absolute inset-0 m-auto"  />
-  <img v-click="[3, 4]" src="./assets/instructions/21-3.png" width=190 class="absolute inset-0 m-auto"  />
-  <img v-click="[4, 6]" src="./assets/instructions/21-4.png" width=190 class="absolute inset-0 m-auto"  />
-  <img v-click="[6, 7]" class="max-h-90 absolute inset-0 m-auto" src="./assets/instructions/19-2.png"  />
-  <img v-click="7" src="./assets/instructions/21-5.png" width=190 class="absolute inset-0 m-auto"  />
+  <img v-click="[1, 2]" src="./assets/instructions/21-1.png" width=170 class="absolute inset-0 m-auto"  />
+  <img v-click="[2, 3]" src="./assets/instructions/21-2.png" width=170 class="absolute inset-0 m-auto"  />
+  <img v-click="[3, 4]" src="./assets/instructions/21-3.png" width=170 class="absolute inset-0 m-auto"  />
+  <img v-click="[4, 6]" src="./assets/instructions/21-4.png" width=170 class="absolute inset-0 m-auto"  />
+  <img v-click="6" class="max-h-90 absolute inset-0 m-auto" src="./assets/instructions/19-2.png"  />
 </div>
 
 ::right::
@@ -1259,7 +1331,7 @@ export function increment() { count++ }
 ```
 
 </div>
-<div v-click="[5, 7]" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
+<div v-click="5" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
 // module.js
@@ -1277,35 +1349,7 @@ console.log(count); // 1
 ```
 
 </div>
-<div v-click="7" class="absolute top-0 left-1/2 -translate-x-1/2 w-17/20">
-
-```js
-// a.js
-import { value } from './b.js';
-export const value = 'a';
-export const getValue = () => value;
-```
-<div v-click="8">
-```js
-// b.js
-import { value } from './a.js';
-export const value = 'b';
-export const getValue = () => value;
-```
-</div>
-
-<div v-click="9">
-```js
-// main.js
-import { getValue as getA } from './a.js';
-import { getValue as getB } from './b.js';
-console.log(getA()); // 'b'
-console.log(getB()); // 'a'
-```
-</div>
-
-</div>
-<ul v-click.hide="7" class="absolute left-10 bottom-0">
+<ul class="absolute left-10 bottom-0">
   <li v-click="1">L'arbre des modules est parcouru dans l'ordre inverse</li>
   <li v-click="3">Un espace mémoire est attribué à chaque export</li>
   <li v-click="5">Les imports sont liés au même espace mémoire (les valeurs ne sont pas copiées)</li>
@@ -1341,11 +1385,11 @@ layout: two-cols-header
 # {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Quels bénéfices ?
 
 <div class="h-full relative">
-  <img v-click="1" src="./assets/instructions/23-1.png" width=80 class="absolute right-100 bottom-50 inset-0 m-auto">
-  <img v-click="2" src="./assets/instructions/laptop.png" width=170 class="absolute left-70 bottom-50 inset-0 m-auto">
-  <img v-click="3" src="./assets/instructions/23-3.png" width=80 class="absolute right-150 top-50 inset-0 m-auto">
-  <img v-click="4" src="./assets/instructions/21-5.png" width=150 class="absolute top-50 inset-0 m-auto">
-  <img v-click="5" src="./assets/instructions/23-5.png" width=80 class="absolute left-150 top-50 inset-0 m-auto">
+  <img v-click="1" src="./assets/instructions/23-1.png" width=80 class="absolute right-100 bottom-65 inset-0 m-auto">
+  <img v-click="2" src="./assets/instructions/laptop.png" width=170 class="absolute left-70 bottom-65 inset-0 m-auto">
+  <img v-click="3" src="./assets/instructions/23-3.png" width=80 class="absolute right-150 top-35 inset-0 m-auto">
+  <img v-click="4" src="./assets/instructions/21-5.png" width=150 class="absolute top-35 inset-0 m-auto">
+  <img v-click="5" src="./assets/instructions/23-5.png" width=80 class="absolute left-150 top-35 inset-0 m-auto">
 </div>
 
 <!-- 
@@ -1357,7 +1401,30 @@ Static: analysable, tree-shakeable
 -->
 
 ---
+
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Un exemple : Vite
+
+<div class="h-full relative">
+<div class="h-full w-full grid place-items-center pb-50">
+  <img src="./assets/lightning-bolt.png" width=50/>
+</div>
+
+<div v-click class="absolute bottom-30 left-1/2 -translate-x-1/2">
+
+```html
+<!-- pas de build : ESM natif -->
+<script type="module" src="/src/main.js"></script>
+```
+
+</div>
+</div>
+
+<!-- Vite est un serveur de dev très rapide construit sur le ESM. Le principe est simple, le navigateur peut importer les modules directement du coup il n'y a presque rien à faire, Vite ne fait que servir les modules (pas besoin de build l'application pour servir un seul module au serveur + se compliquer la vie pour le HMR).
+Il y a aussi des vraies apps de prod qui importent directement leurs composants en ESM, pas de bundling-->
+
+---
 layout: two-cols-header
+disabled: true
 ---
 
 # {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Modules ≠ Scripts
@@ -1475,88 +1542,331 @@ import something from "otherModule.js"
 <!-- Module comme parse goal: use strict, await. Parler de type module comme quelque chose de fondamentalement différent d'un script. Ca marche pour le navigateur mais pas pour node, d'où le mjs. Parler de comment Node comprend qu'un fichier est un module.-->
 
 ---
+layout: center
+---
+
+# Interopérabilité
+
+---
 layout: two-cols-header
 ---
 
-# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Interopérabilité
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; CJS ou ESM ?
 
 ::left::
 
-<div class="h-full relative">
-<div v-click="1" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+<div class="h-full flex flex-col justify-center items-center gap-5">
+  <img v-click src="./assets/instructions/2-1.png" width=120 />
+  <img v-click src="./assets/duplo.png" width=240 />
+</div>
+
+::right::
+
+<div class="h-full flex flex-col justify-center gap-3">
+
+<div v-click>
 
 ```js
-// module.mjs
-import foo from "module.cjs"
+// 1. l'extension du fichier
+module.mjs   module.cjs
 ```
 
 </div>
+
+<div v-click>
+
+```json
+// 2. le package.json
+{ "type": "module" }
+```
+
+</div>
+
+<div v-click>
+
+```js
+// 3. sinon, analyse de la syntaxe
+import foo from "bar"        // → ESM
+const foo = require("bar")   // → CJS
+```
+
+</div>
+
+</div>
+
+<!-- Problème fondamental dans node : comment le runtime peut-il comprendre si un module est de l'esm ou du cjs, il n'utilise pas le même code pour charger les deux, donc il doit savoir, s'il se trompe, on a des erreurs "import outside module" ou "require not suppoted in module". Conventions (nom de fichier, package.json, détection de la syntaxe au runtime en fallback). -->
+
+---
+layout: two-cols-header
+---
+
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Compatibilité unidirectionnelle
+
+::left::
+
+<div class="h-full flex flex-col justify-center items-center">
+  <img src="./assets/duplo-lego.png" width=200 />
+</div>
+
+::right::
+
+<div class="h-full flex flex-col justify-center gap-6">
+
+<div v-click="1">
+
+```js
+// app.mjs
+import foo from "./legacy.cjs"   // ✅
+```
+
+</div>
+
+<div v-click="2">
+
+```js
+// app.cjs
+const foo = require("./modern.mjs")   // ❌
+```
+
+</div>
+
+</div>
+
+<!-- import un module CJS a toujours marché parce que le système asynchrone peut supporter un import synchrone. C'est l'inverse qui est problématique, un module cjs ne peut pas require un module ESM parce que celui-ci a une exécution asynchrone -->
+
+---
+layout: two-cols-header
+---
+
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Top-level await
+
+::left::
+
+<div class="h-full flex flex-col justify-center items-center">
+  <img src="./assets/instructions/23-3.png" width=120 />
 </div>
 
 ::right::
 
 <div class="h-full relative">
-<div v-click="[2, 3]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+<div v-click="1" class="absolute top-20 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
-// module.cjs
-const foo = require('module.mjs');
+// config.mjs
+const res = await fetch("/config.json");
+export const config = await res.json();
 ```
 
 </div>
-<div v-click="[3, 4]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+
+<div v-click="2" class="absolute bottom-30 left-1/2 -translate-x-1/2 w-17/20">
 
 ```js
-// module.cjs
-const foo = require('module.mjs');
-```
-
-```js
-// module.mjs
-export default "foo";
+// app.mjs
+import { config } from "./config.mjs";
+// ⏳ attend la résolution de config.mjs
 ```
 
 </div>
-<div v-click="[4, 5]" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
 
-```js
-// module.cjs
-const foo = require('module.mjs');
+</div>
 
-console.log(foo); // { default: "foo" }
-```
+<!-- Exécution asynchrone d'un ES module = top-level await. Explication de top-level await, le module entier devient asynchrone et le module qui l'importe attend qu'il résolve (mais ça ne bloque pas les modules qui ne sont pas dépendants dans le graphe)-->
 
-```js
-// module.mjs
-export default "foo";
+---
+
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; CJS reste le standard
+
+<div class="h-full grid place-items-center">
+  <img v-click.hide="1" src="./assets/instructions/26-1.png" width=200 class="absolute inset-0 m-auto" />
+  <img v-click="[1, 2]" src="./assets/instructions/26-2.png" width=200 class="absolute inset-0 m-auto" />
+  <img v-click="2" src="./assets/instructions/26-3.png" width=200 class="absolute inset-0 m-auto" />
+</div>
+
+<!-- Conséquence : très difficile pour les auteurs de package de migrer en ESM-only parce que du coup les apps CJS ne peuvent plus les utiliser. Donc en fait il est très difficile pour l'écosystème de migrer progressivement, il faudrait que tout le monde migre d'un coup. Le plan à la base était que l'incompatibilité forcerait les consommateurs à migrer une fois que leurs dépendances ne livreraient plus de CJS. Mais le centre de gravité était plutôt côté cjs/consommateurs et l'écosystème s'est stabilisé sur le maintien du support CJS pour ne pas casser et ESM en bonus. -->
+
+---
+layout: two-cols-header
+---
+
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Packages en CJS et ESM
+
+::left::
+
+<div v-click class="h-full flex flex-col justify-center items-center gap-5">
+  <img src="./assets/instructions/2-1.png" width=120 />
+  <img src="./assets/duplo.png" width=240 />
+</div>
+
+::right::
+
+<div class="h-full relative">
+
+<div v-click="2" class="absolute inset-0 m-auto size-fit w-17/20">
+
+```json
+// package.json
+{
+  "exports": {
+    "require": "./index.cjs",
+    "import": "./index.mjs"
+  }
+}
 ```
 
 </div>
-<div v-click="5" class="absolute top-0 left-1/2 -translate-x-1/2 w-18/20">
+</div>
 
-```js
-// module.cjs
-const foo = require('module.mjs');
-const bar = require('module.cjs');
+<!--  Les auteurs de libraires exportent toujours du CJS et parfois de l'ESM en double format, mais jamais ESM-only. -->
 
-console.log(foo); // { default: "foo" }
-console.log(bar); // "bar"
-```
+---
 
-```js
-// module.mjs
-export default "foo";
-```
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Problème du double format
 
-```js
-// module.cjs
-module.exports = "bar";
-```
+<div class="h-full grid place-items-center">
+<div class="relative w-[430px] h-[400px] scale-[1.1]">
+
+  <!-- le package, publié en deux formats -->
+  <div class="absolute left-[60px] top-[0px] w-[110px] text-center text-xs text-gray-500">CJS</div>
+  <img src="./assets/instructions/2-1.png" class="absolute left-[60px] top-[15px] w-[90px]" />
+  <div v-click="1" class="absolute left-[250px] top-[0px] w-[150px] text-center text-xs text-gray-500">ESM</div>
+  <img v-click="1" src="./assets/duplo.png" class="absolute left-[250px] top-[15px] w-[170px]" />
+
+  <!-- les consommateurs -->
+  <img src="./assets/instructions/2-1.png" class="absolute left-[20px] bottom-[45px] w-[75px]" />
+  <img src="./assets/instructions/2-1.png" class="absolute left-[178px] bottom-[45px] w-[75px]" />
+  <img src="./assets/instructions/2-1.png" class="absolute left-[335px] bottom-[45px] w-[75px]" />
+
+  <!-- les flèches de consommation -->
+  <svg class="absolute inset-0 w-full h-full pointer-events-none text-gray-500" viewBox="0 0 430 400">
+    <defs>
+      <marker id="pkg-ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
+      </marker>
+    </defs>
+    <line x1="57" y1="297" x2="115" y2="102" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
+    <line v-click.hide="1" x1="215" y1="297" x2="115" y2="102" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
+    <line v-click.hide="1" x1="372" y1="297" x2="115" y2="102" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
+    <line v-click="1" x1="215" y1="297" x2="325" y2="140" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
+    <line v-click="1" x1="372" y1="297" x2="325" y2="140" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
+  </svg>
 
 </div>
 </div>
 
-<!-- Interop en node: Possibilité d'importer des modules commonJS en ESM (comme un import dynamique, ça sera résolu au runtime, mais ça marche (pas très grave parce qu'on est côté serveur). Aussi depuis node 22, possibilité de require de l'ESM, mais avec une limitation: le module ESM doit être synchrone (pas de top-level await) parce que require est synchrone. ). Attention pour les imports defaults la transition n'est pas transparente, module.exports n'est pas strictement équivalent à export default parce que l'un renvoie directement l'export alors que l'autre le renvoie comme la clé default du module. -->
+<!-- Problème : les dépendences sont deux fois plus lourdes et surtout, ça peut casser silencieusement le principe de cache des modules (singleton). Certains paquets utilisent le cache des modules comme implémentation simple du pattern singleton (une seule instance de classe exportée, on tape toujours la même vu qu'un module n'est exécuté qu'une seule fois puis caché). Mais il se peut que dans la même app le package en CJS et en ESM soit importé donc il y a deux instances. -->
+
+---
+layout: two-cols-header
+---
+
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Faux ESM
+
+::left::
+
+<div class="h-full relative">
+
+<div v-click="1" class="absolute top-20 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+// src/index.ts  (ESM)
+import { foo } from "./foo"
+export const bar = foo()
+```
+
+</div>
+
+<div v-click="3" class="absolute bottom-20 left-1/2 -translate-x-1/2 w-18/20">
+
+```js
+// dist/index.js  (CJS !)
+"use strict";
+const { foo } = require("./foo");
+exports.bar = foo();
+```
+
+</div>
+
+</div>
+
+::right::
+
+<div class="h-full grid place-items-center">
+  <div class="relative size-60">
+    <div v-click="[2,3]" class="absolute inset-0 flex flex-col items-center justify-center gap-2">
+      <img src="./assets/duplo.png" width=240 />
+      <div class="text-sm text-gray-500">ESM</div>
+    </div>
+    <div v-click="3" class="absolute inset-0 flex flex-col items-center justify-center gap-2">
+      <img src="./assets/instructions/2-1.png" width=120 />
+      <div class="text-sm text-gray-500">CJS</div>
+    </div>
+  </div>
+</div>
+
+<!-- L'ESM est tellement pas un standard que la plupart des outils de build emettent du CJS par défaut, même si le code source est en ESM, afin de privilégier la compatibilité. On parle de faux ESM. C'est particulièrement source de confusion quand un développeur veut importer un module ESM dans son code et qu'il voit une erreur require(esm). Vu qu'il y a des solutions de contournement, ça devient encore plus difficile d'utiliser de l'ESM (transpilation, double formats) -->
+
+---
+
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; L'ESM est-il vraiment asynchrone ?
+
+<div class="h-full relative">
+
+<div v-click="1" class="absolute inset-0 flex items-center justify-center pb-10">
+  <div class="grid w-[920px] border border-black rounded-xl p-4" style="grid-template-columns: repeat(125, 1fr); gap: 2px;">
+    <span v-for="i in 5000" :key="i"
+      class="aspect-square rounded-full"
+      :class="i === 1 && $clicks >= 3 ? 'bg-red-500' : i <= 6 && $clicks >= 2 ? 'bg-yellow-500' : 'bg-gray-400/30'"></span>
+  </div>
+</div>
+
+<div v-click="1" class="absolute bottom-20 right-0 text-center text-xs text-gray-500">
+  Données : Joyee Cheung
+</div>
+
+<span v-click="2" /><span v-click="3" />
+
+</div>
+
+<!-- En fait, l'ESM est OPTIONELLEMENT asynchrone. Si le module n'a pas de top-level await, l'évaluation est synchrone, ça change tout ! Il est donc possible de require un esm de manière synchrone sans problème. Intéressant que la communauté nodejs ait mis au moins 5 ans à voir ça. Sur les 5000 packages les plus influents, 6 seulement utilisent du top-level await, et 5 sur 6 peuvent utiliser autre chose. Le dernier est dans du code minifié donc c'est pas clair. En fait top-level await c'est du code applicatif mais pas de package, très peu de chances de le croiser dans une dépendance -->
+
+---
+layout: two-cols-header
+---
+
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Compatibilité bidirectionnelle
+
+::left::
+
+<div class="h-full grid place-items-center">
+<img src="./assets/instructions/5-2.png" width=200 />
+</div>
+
+::right::
+
+<div class="h-full relative">
+
+<div v-click="1" class="absolute inset-0 m-auto size-fit w-17/20">
+
+```js
+// app.cjs
+const { render } = require("./app.mjs"); // ✅
+```
+
+</div>
+
+</div>
+
+<!-- Début 2026 le support de require(esm) est arrivé dans node (pas expérimental), donc on peut s'attendre à ce que les packages fassent de plus en plus d'ESM -->
+
+---
+
+# {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Evolution de l'écosystème ?
+
+<div v-click class="h-full grid place-items-center -mt-5">
+<img src="./assets/esm-vs-cjs.svg" width=550 />
+</div>
 
 ---
 
@@ -1569,16 +1879,22 @@ module.exports = "bar";
 
 <!-- TODO Mention des nodisms pour le CJS (bare imports, pas d'extension)-->
 
-<!-- Deux solutions fondamentalement différentes (pas la même nature) au même problème. Persistance des CJS même si la norme sont les ESM car c'est encore central dans node, et le code legacy a été fait pour le CJS donc les migrations sont difficiles. Utiliser l'ESM, connaître les différences entre les deux pour pouvoir fonctionner avec l'ESM. La plupart des apps web sont bundlées donc en fait l'impact est plus sur la devx que sur le runtime vraiment. -->
+<!-- Recap: 
+* Pourquoi on a besoin d'un système de modules
+* Pourquoi on a deux systèmes de modules
+* Comment ils fonctionnent et quelles sont leurs différences fondamentales
+* Pourquoi le CJS existe encore
+
+On espère que cette conf va devenir inutile, l'ESM est le format moderne et il y a de moins en moins d'excuses pour en faire de partout et arriver à un ecosystème full-ESM.  -->
 
 ---
 
 <div class="flex justify-evenly items-center h-full">
   <img src="./assets/portrait-lego.png" width=300 />
-  <div class="flex flex-col items-center gap-10">
+  <div class="flex flex-col items-center gap-2">
     <div class="text-3xl font-bold">Théo Gianella</div>
-    <div class="text-xl -mt-8">Développeur web</div>
-    <img src="./assets/Logo-Zenika.svg" />
+    <div class="text-xl">Développeur web</div>
+    <img src="./assets/Logo-Zenika.svg" mt-2 width=70 />
   </div>
 </div>
 
