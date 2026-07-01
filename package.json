@@ -19,5 +19,8 @@
     "sandpack-vue3": "^3.1.12",
     "veaury": "^2.6.3",
     "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "slidev-addon-qrcode": "^1.0.2"
   }
 }

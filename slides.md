@@ -1,6 +1,8 @@
 ---
 # try also 'default' to start simple
 theme: ./theme
+addons:
+  - slidev-addon-qrcode
 fonts:
   sans: Momo Trust Sans
 # some information about your slides (markdown enabled)
@@ -1604,8 +1606,11 @@ layout: two-cols-header
 
 ::left::
 
-<div class="h-full flex flex-col justify-center items-center">
-  <img src="./assets/duplo-lego.png" width=200 />
+<div class="relative h-full flex justify-center items-center">
+  <img class="absolute inset-0 m-auto" v-click="[1, 2]" src="./assets/instructions/26-1.png" width=200 />
+  <img class="absolute inset-0 m-auto" v-click="[2, 3]" src="./assets/duplo-lego.png" width=200 />
+  <img class="absolute inset-0 m-auto" v-click="[3, 4]" src="./assets/instructions/26-2.png" width=200 />
+  <img class="absolute inset-0 m-auto" v-click="4" src="./assets/instructions/26-3.png" width=200 />
 </div>
 
 ::right::
@@ -1621,7 +1626,7 @@ import foo from "./legacy.cjs"   // ✅
 
 </div>
 
-<div v-click="2">
+<div v-click="3">
 
 ```js
 // app.cjs
@@ -1678,13 +1683,66 @@ import { config } from "./config.mjs";
 
 # {{ $page - 5 }} &nbsp;&nbsp;&nbsp; CJS reste le standard
 
-<div class="h-full grid place-items-center">
-  <img v-click.hide="1" src="./assets/instructions/26-1.png" width=200 class="absolute inset-0 m-auto" />
-  <img v-click="[1, 2]" src="./assets/instructions/26-2.png" width=200 class="absolute inset-0 m-auto" />
-  <img v-click="2" src="./assets/instructions/26-3.png" width=200 class="absolute inset-0 m-auto" />
+<div class="h-full flex items-center justify-center gap-8">
+
+<!-- ============ LÉGENDE DES PIÈCES (colonne à gauche) ============ -->
+<div class="flex flex-col gap-6 text-lg text-gray-500">
+<div class="flex flex-col items-center gap-1"><img src="./assets/instructions/2-1.png" class="w-10" /><span>CJS</span></div>
+<div class="flex flex-col items-center gap-1"><img src="./assets/duplo.png" class="w-16" /><span>ESM</span></div>
 </div>
 
-<!-- Conséquence : très difficile pour les auteurs de package de migrer en ESM-only parce que du coup les apps CJS ne peuvent plus les utiliser. Donc en fait il est très difficile pour l'écosystème de migrer progressivement, il faudrait que tout le monde migre d'un coup. Le plan à la base était que l'incompatibilité forcerait les consommateurs à migrer une fois que leurs dépendances ne livreraient plus de CJS. Mais le centre de gravité était plutôt côté cjs/consommateurs et l'écosystème s'est stabilisé sur le maintien du support CJS pour ne pas casser et ESM en bonus. -->
+<!-- ============ CONTENEUR ENCADRÉ : 3 étapes côte à côte (inspiré de la slide 2004) ============ -->
+<div class="relative bg-[#ffffde] border border-black rounded-lg w-[720px] h-[360px] overflow-clip bottom-8 left-5">
+
+<!-- Séparateurs entre les tiers : barres noires centrées verticalement -->
+<div class="absolute top-[40px] bottom-[40px] left-[239px] w-[2px] bg-black rounded-full"></div>
+<div class="absolute top-[40px] bottom-[40px] left-[479px] w-[2px] bg-black rounded-full"></div>
+
+<!-- ============ ÉTAPE 1 (x=137) : tout en CJS ============ -->
+<div v-click="1">
+<div class="absolute left-[24px] top-[20px] text-4xl font-bold text-black">1</div>
+<img src="./assets/instructions/2-1.png" class="absolute left-[120px] top-[120px] -translate-x-1/2 -translate-y-1/2 w-[70px]" />
+<svg class="absolute left-[120px] top-[175px] -translate-x-1/2 w-[40px] h-[46px]" viewBox="0 0 40 46"><line x1="20" y1="0" x2="20" y2="34" stroke="#9ca3af" stroke-width="2.5" /><polygon points="13,32 27,32 20,45" fill="#9ca3af" /></svg>
+<img src="./assets/instructions/2-1.png" class="absolute left-[120px] top-[270px] -translate-x-1/2 -translate-y-1/2 w-[70px]" />
+</div>
+
+<!-- ============ ÉTAPE 2 (x=410) ============ -->
+<!-- Scénario A (clics 2-3) : le package passe en ESM-only -> rupture -->
+<div v-click="[2,4]">
+<div class="absolute left-[264px] top-[20px] text-4xl font-bold text-black">2</div>
+<img src="./assets/instructions/2-1.png" class="absolute left-[360px] top-[120px] -translate-x-1/2 -translate-y-1/2 w-[70px]" />
+<svg class="absolute left-[360px] top-[175px] -translate-x-1/2 w-[40px] h-[46px]" viewBox="0 0 40 46"><line x1="20" y1="0" x2="20" y2="34" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6 5" /><polygon points="13,32 27,32 20,45" fill="#dc2626" /></svg>
+<img src="./assets/duplo.png" class="absolute left-[360px] top-[270px] -translate-x-1/2 -translate-y-1/2 w-[140px]" />
+</div>
+<!-- Scénario B (clic 5+) : le package reste en CJS -->
+<div v-click="5">
+<div class="absolute left-[264px] top-[20px] text-4xl font-bold text-black">2</div>
+<img src="./assets/instructions/2-1.png" class="absolute left-[360px] top-[120px] -translate-x-1/2 -translate-y-1/2 w-[70px]" />
+<svg class="absolute left-[360px] top-[175px] -translate-x-1/2 w-[40px] h-[46px]" viewBox="0 0 40 46"><line x1="20" y1="0" x2="20" y2="34" stroke="#9ca3af" stroke-width="2.5" /><polygon points="13,32 27,32 20,45" fill="#9ca3af" /></svg>
+<img src="./assets/instructions/2-1.png" class="absolute left-[360px] top-[270px] -translate-x-1/2 -translate-y-1/2 w-[70px]" />
+</div>
+
+<!-- ============ ÉTAPE 3 (x=683) ============ -->
+<!-- Scénario A (clic 3) : tout le monde passe en ESM -->
+<div v-click="[3,4]">
+<div class="absolute left-[504px] top-[20px] text-4xl font-bold text-black">3</div>
+<img src="./assets/duplo.png" class="absolute left-[600px] top-[120px] -translate-x-1/2 -translate-y-1/2 w-[140px]" />
+<svg class="absolute left-[600px] top-[175px] -translate-x-1/2 w-[40px] h-[46px]" viewBox="0 0 40 46"><line x1="20" y1="0" x2="20" y2="34" stroke="#9ca3af" stroke-width="2.5" /><polygon points="13,32 27,32 20,45" fill="#9ca3af" /></svg>
+<img src="./assets/duplo.png" class="absolute left-[600px] top-[270px] -translate-x-1/2 -translate-y-1/2 w-[140px]" />
+</div>
+<!-- Scénario B (clic 6+) : seul le consommateur migre, importe du CJS -->
+<div v-click="6">
+<div class="absolute left-[504px] top-[20px] text-4xl font-bold text-black">3</div>
+<img src="./assets/duplo.png" class="absolute left-[600px] top-[120px] -translate-x-1/2 -translate-y-1/2 w-[140px]" />
+<svg class="absolute left-[600px] top-[175px] -translate-x-1/2 w-[40px] h-[46px]" viewBox="0 0 40 46"><line x1="20" y1="0" x2="20" y2="34" stroke="#16a34a" stroke-width="2.5" /><polygon points="13,32 27,32 20,45" fill="#16a34a" /></svg>
+<img src="./assets/instructions/2-1.png" class="absolute left-[600px] top-[270px] -translate-x-1/2 -translate-y-1/2 w-[70px]" />
+</div>
+
+</div>
+
+</div>
+
+<!-- Conséquence : très difficile pour les auteurs de package de migrer en ESM-only parce que du coup les apps CJS ne peuvent plus les utiliser (require(ESM) casse). Donc en fait il est très difficile pour l'écosystème de migrer progressivement, il faudrait que tout le monde migre d'un coup (phase 2). Le plan à la base était que l'incompatibilité forcerait les consommateurs à migrer une fois que leurs dépendances ne livreraient plus de CJS. Mais le centre de gravité était plutôt côté cjs/consommateurs et l'écosystème s'est stabilisé sur le maintien du support CJS pour ne pas casser et ESM en bonus. La dissymétrie clé (phase 4) : un consommateur peut passer son propre code en ESM et continuer d'importer des dépendances CJS (import de CJS marche), alors que l'inverse casse. Donc livrer du CJS reste le choix sûr : consommable par tout le monde. -->
 
 ---
 layout: two-cols-header
@@ -1745,11 +1803,11 @@ layout: two-cols-header
         <path d="M0,0 L6,3 L0,6 Z" fill="currentColor" />
       </marker>
     </defs>
-    <line x1="57" y1="297" x2="115" y2="102" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
-    <line v-click.hide="1" x1="215" y1="297" x2="115" y2="102" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
-    <line v-click.hide="1" x1="372" y1="297" x2="115" y2="102" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
-    <line v-click="1" x1="215" y1="297" x2="325" y2="140" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
-    <line v-click="1" x1="372" y1="297" x2="325" y2="140" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
+    <line x1="57" y1="297" x2="100" y2="102" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
+    <line v-click.hide="1" x1="195" y1="290" x2="135" y2="102" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
+    <line v-click.hide="1" x1="340" y1="297" x2="160" y2="102" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
+    <line v-click="1" x1="215" y1="297" x2="310" y2="140" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
+    <line v-click="1" x1="372" y1="297" x2="372" y2="160" stroke="currentColor" stroke-width="2" marker-end="url(#pkg-ah)" />
   </svg>
 
 </div>
@@ -1829,7 +1887,7 @@ exports.bar = foo();
 
 </div>
 
-<!-- En fait, l'ESM est OPTIONELLEMENT asynchrone. Si le module n'a pas de top-level await, l'évaluation est synchrone, ça change tout ! Il est donc possible de require un esm de manière synchrone sans problème. Intéressant que la communauté nodejs ait mis au moins 5 ans à voir ça. Sur les 5000 packages les plus influents, 6 seulement utilisent du top-level await, et 5 sur 6 peuvent utiliser autre chose. Le dernier est dans du code minifié donc c'est pas clair. En fait top-level await c'est du code applicatif mais pas de package, très peu de chances de le croiser dans une dépendance -->
+<!-- En fait, l'exécution de l'ESM est OPTIONELLEMENT asynchrone. Si le module n'a pas de top-level await, l'évaluation est synchrone, ça change tout ! Il est donc possible de require un esm de manière synchrone sans problème. Intéressant que la communauté nodejs ait mis au moins 5 ans à voir ça. Sur les 5000 packages les plus influents, 6 seulement utilisent du top-level await, et 5 sur 6 peuvent utiliser autre chose. Le dernier est dans du code minifié donc c'est pas clair. En fait top-level await c'est du code applicatif mais pas de package, très peu de chances de le croiser dans une dépendance -->
 
 ---
 layout: two-cols-header
@@ -1868,6 +1926,8 @@ const { render } = require("./app.mjs"); // ✅
 <img src="./assets/esm-vs-cjs.svg" width=550 />
 </div>
 
+<!-- Pas de révolution depuis la sortie du support require(ESM) mais des infos qui vont dans la bonne direction. La part du CJS continue de descendre régulièrement mais info intéressante, la part du pur ESM progresse beaucoup plus vite. Ca signifie que les packages qui arrêtent le pur CJS arrêtent d'utiliser les solutions de contournement. -->
+
 ---
 
 # {{ $page - 5 }} &nbsp;&nbsp;&nbsp; Conclusion
@@ -1889,12 +1949,34 @@ On espère que cette conf va devenir inutile, l'ESM est le format moderne et il 
 
 ---
 
-<div class="flex justify-evenly items-center h-full">
-  <img src="./assets/portrait-lego.png" width=300 />
-  <div class="flex flex-col items-center gap-2">
-    <div class="text-3xl font-bold">Théo Gianella</div>
-    <div class="text-xl">Développeur web</div>
-    <img src="./assets/Logo-Zenika.svg" mt-2 width=70 />
+<div class="flex justify-evenly items-center h-full gap-8">
+  <img src="./assets/portrait-lego.png" width=280 class="border border-black rounded-xl" />
+  <div class="flex flex-col items-center gap-3">
+    <div class="text-5xl font-bold">Théo Gianella</div>
+    <div class="text-3xl">Développeur web</div>
+    <img src="./assets/Logo-Zenika.svg" mt-2 width=120 />
+  </div>
+  <div class="flex flex-col gap-6">
+    <div class="flex flex-col items-center gap-2">
+      <div class="text-2xl font-bold">Feedback</div>
+      <QRCode
+        :width="150"
+        :height="150"
+        type="svg"
+        data="https://openfeedback.io/sunnytech2026/2026-07-02/cmkl8du86006601s4jdje86gm"
+        :margin="2"
+      />
+    </div>
+    <div class="flex flex-col items-center gap-2">
+      <div class="text-2xl font-bold">Ressources</div>
+      <QRCode
+        :width="150"
+        :height="150"
+        type="svg"
+        data="https://tgianella.dev/fr/talks/javascript-modules/"
+        :margin="2"
+      />
+    </div>
   </div>
 </div>
 
