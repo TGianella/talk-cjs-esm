@@ -12,6 +12,8 @@
     "@slidev/cli": "^52.6.0",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
+    "codemirror-theme-vars": "0.1.2",
+    "prism-theme-vars": "0.2.5",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "sandpack-vue3": "^3.1.12",
